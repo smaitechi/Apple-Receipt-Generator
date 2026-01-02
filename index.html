@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Store Receipt Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f7;
+            padding: 20px;
+            color: #1d1d1f;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 450px;
+            gap: 30px;
+        }
+        
+        .receipt-container {
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .receipt {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            padding: 25px;
+            background-color: white;
+            position: relative;
+        }
+        
+        .apple-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e5e7;
+        }
+        
+        .apple-logo {
+            color: #000;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .store-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .store-address {
+            font-size: 12px;
+            color: #6e6e73;
+            line-height: 1.4;
+        }
+        
+        .receipt-details {
+            margin-bottom: 20px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .detail-label {
+            font-weight: 500;
+        }
+        
+        .customer-info {
+            background-color: #f5f5f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .customer-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .payment-method {
+            font-size: 14px;
+            color: #6e6e73;
+        }
+        
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .items-table th {
+            text-align: left;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e5e7;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .items-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f7;
+            font-size: 13px;
+            vertical-align: top;
+        }
+        
+        .item-specs {
+            font-size: 12px;
+            color: #6e6e73;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+        
+        .item-details {
+            font-size: 11px;
+            color: #86868b;
+            margin-top: 8px;
+            padding: 8px;
+            background-color: #fbfbfd;
+            border-radius: 4px;
+        }
+        
+        .totals {
+            margin-top: 20px;
+            border-top: 1px solid #e5e5e7;
+            padding-top: 15px;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .total-amount {
+            font-weight: 600;
+            font-size: 18px;
+            border-top: 1px solid #e5e5e7;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed #d2d2d7;
+            font-size: 12px;
+            color: #86868b;
+            line-height: 1.5;
+        }
+        
+        .controls {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .control-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f5;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-title i {
+            color: #007AFF;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #424245;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d2d2d7;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #007AFF;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 5px;
+        }
+        
+        .btn:hover {
+            background-color: #0056CC;
+        }
+        
+        .btn-secondary {
+            background-color: #6e6e73;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #505054;
+        }
+        
+        .btn-danger {
+            background-color: #FF3B30;
+        }
+        
+        .btn-danger:hover {
+            background-color: #D70015;
+        }
+        
+        .item-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .item-controls .btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+        }
+        
+        .products-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e5e5e7;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .product-item {
+            padding: 10px;
+            border-bottom: 1px solid #f5f5f7;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-item:last-child {
+            border-bottom: none;
+        }
+        
+        .product-name {
+            font-weight: 500;
+            max-width: 70%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+        
+        .remove-product {
+            color: #FF3B30;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1d1d1f;
+        }
+        
+        .page-title h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .page-title p {
+            font-size: 16px;
+            color: #86868b;
+        }
+        
+        @media print {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .receipt {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .color-preview {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+        }
+        
+        .price-display {
+            background-color: #f5f5f7;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+        
+        .auto-fill-notice {
+            font-size: 12px;
+            color: #86868b;
+            margin-top: 5px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-title">
+        <h1><i class="fab fa-apple"></i> Apple Store Receipt Generator</h1>
+        <p>Create customizable Apple receipts with automatic product details, IMEI, serial numbers</p>
+    </div>
+    
+    <div class="container">
+        <!-- Receipt Preview -->
+        <div class="receipt-container">
+            <div class="receipt" id="receipt">
+                <div class="apple-header">
+                    <div class="apple-logo">
+                        <i class="fab fa-apple"></i> Apple Store
+                    </div>
+                    <div class="store-name" id="store-name">GRAFTON STREET</div>
+                    <div class="store-address" id="store-address">
+                        1-6 Grafton Street, Dublin 2, D02 XH61
+                    </div>
+                </div>
+                
+                <div class="receipt-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Date:</span>
+                        <span id="receipt-date">April 9, 2025</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Time:</span>
+                        <span id="receipt-time">10:15 AM</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Receipt #:</span>
+                        <span id="receipt-number">967654321</span>
+                    </div>
+                </div>
+                
+                <div class="customer-info">
+                    <div class="customer-name" id="customer-name">Patrick Cusack</div>
+                    <div class="payment-method" id="payment-method">Visa Credit Card **** ***** 1234</div>
+                </div>
+                
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th style="text-align: right;">Unit Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="items-list">
+                        <!-- Items will be dynamically added here -->
+                    </tbody>
+                </table>
+                
+                <div class="totals">
+                    <div class="total-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">€ 2,799.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>VAT (23%):</span>
+                        <span id="vat">€ 643.77</span>
+                    </div>
+                    <div class="total-row total-amount">
+                        <span>Total Paid</span>
+                        <span id="total">€ 3,442.77</span>
+                    </div>
+                </div>
+                
+                <div class="footer">
+                    <p><strong>Thank you for shopping at Apple</strong></p>
+                    <p>Keep this receipt for warranty and support purposes.</p>
+                    <p>For assistance, visit <a href="https://support.apple.com" style="color: #007AFF;">support.apple.com</a> or call 1-800-APL-CARE</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <div class="control-section">
+                <div class="section-title"><i class="fas fa-store"></i> Store Details</div>
+                <div class="form-group">
+                    <label for="store-name-input">Store Name</label>
+                    <input type="text" id="store-name-input" value="GRAFTON STREET">
+                </div>
+                <div class="form-group">
+                    <label for="store-address-input">Store Address</label>
+                    <textarea id="store-address-input">1-6 Grafton Street, Dublin 2, D02 XH61</textarea>
+                </div>
+            </div>
+            
+            <div class="control-section">
+                <div class="section-title"><i class="far fa-calendar-alt"></i> Receipt Details</div>
+                <div class="form-group">
+                    <label for="receipt-date-input">Date</label>
+                    <input type="date" id="receipt-date-input" value="2025-04-09">
+                </div>
+                <div class="form-group">
+                    <label for="receipt-time-input">Time</label>
+                    <input type="time" id="receipt-time-input" value="10:15">
+                </div>
+                <div class="form-group">
+                    <label for="receipt-number-input">Receipt Number</label>
+                    <input type="text" id="receipt-number-input" value="967654321">
+                </div>
+            </div>
+            
+            <div class="control-section">
+                <div class="section-title"><i class="fas fa-user"></i> Customer & Payment</div>
+                <div class="form-group">
+                    <label for="customer-name-input">Customer Name</label>
+                    <input type="text" id="customer-name-input" value="Patrick Cusack">
+                </div>
+                <div class="form-group">
+                    <label for="payment-method-input">Payment Method</label>
+                    <input type="text" id="payment-method-input" value="Visa Credit Card **** ***** 1234">
+                </div>
+                <div class="form-group">
+                    <label for="vat-rate-input">VAT Rate (%)</label>
+                    <input type="number" id="vat-rate-input" value="23" min="0" max="100" step="0.1">
+                </div>
+            </div>
+            
+            <div class="control-section">
+                <div class="section-title"><i class="fas fa-mobile-alt"></i> Add Apple Product</div>
+                
+                <div class="form-group">
+                    <label for="product-category">Product Category</label>
+                    <select id="product-category">
+                        <option value="iphone">iPhone</option>
+                        <option value="ipad">iPad</option>
+                        <option value="mac">Mac</option>
+                        <option value="watch">Apple Watch</option>
+                        <option value="airpods">AirPods</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-model-select">Product Model</label>
+                    <select id="product-model-select">
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                    <div class="auto-fill-notice">Select a model to auto-fill details</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-color">Color</label>
+                    <select id="product-color">
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-storage">Storage Capacity</label>
+                    <select id="product-storage">
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+                
+                <div class="price-display" id="price-display">
+                    Price: € 0.00
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-specs-custom">Custom Specifications (Optional)</label>
+                    <textarea id="product-specs-custom" placeholder="Add custom specifications or edit auto-filled specs"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-row">
+                        <div>
+                            <label for="product-part">Part Number</label>
+                            <input type="text" id="product-part" placeholder="Auto-filled from model">
+                        </div>
+                        <div>
+                            <label for="product-serial">Serial Number</label>
+                            <input type="text" id="product-serial" placeholder="C02XL0WYMD6R">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-row">
+                        <div>
+                            <label for="product-imei1">IMEI 1</label>
+                            <input type="text" id="product-imei1" placeholder="35 123456 789012 3">
+                        </div>
+                        <div>
+                            <label for="product-imei2">IMEI 2</label>
+                            <input type="text" id="product-imei2" placeholder="35 123456 789012 4">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-row">
+                        <div>
+                            <label for="product-qty">Quantity</label>
+                            <input type="number" id="product-qty" value="1" min="1">
+                        </div>
+                        <div>
+                            <label for="product-price-custom">Custom Price (€) <small>(optional)</small></label>
+                            <input type="number" id="product-price-custom" placeholder="Leave empty for auto-price">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="item-controls">
+                    <button class="btn" id="add-product-btn">
+                        <i class="fas fa-plus-circle"></i> Add Product
+                    </button>
+                    <button class="btn btn-secondary" id="clear-products-btn">
+                        <i class="fas fa-trash-alt"></i> Clear All
+                    </button>
+                </div>
+            </div>
+            
+            <div class="control-section">
+                <div class="section-title"><i class="fas fa-shopping-cart"></i> Products</div>
+                <div class="products-list" id="products-list">
+                    <!-- Products will be listed here -->
+                </div>
+            </div>
+            
+            <div class="control-section">
+                <div class="section-title"><i class="fas fa-file-export"></i> Export</div>
+                <button class="btn" id="update-receipt-btn">
+                    <i class="fas fa-sync-alt"></i> Update Receipt
+                </button>
+                <button class="btn" id="print-receipt-btn" style="margin-top: 10px;">
+                    <i class="fas fa-print"></i> Print Receipt
+                </button>
+                <button class="btn" id="export-pdf-btn" style="margin-top: 10px;">
+                    <i class="fas fa-file-pdf"></i> Export to PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Apple Products Database
+        const appleProducts = {
+            iphone: {
+                'iPhone 17 Pro Max': {
+                    basePrice: 1299,
+                    colors: [
+                        { name: 'Space Black', code: '#1D1D1F' },
+                        { name: 'Titanium Gray', code: '#8E8E93' },
+                        { name: 'Deep Purple', code: '#5856D6' },
+                        { name: 'Gold', code: '#F5DDC5' },
+                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Alpine Green', code: '#576856' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    partPrefix: 'MTVU3',
+                    specs: '6.9-inch Super Retina XDR display\nA19 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display with ProMotion\nTitanium design\n5G capable\nEmergency SOS via satellite',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                },
+                'iPhone 17 Pro': {
+                    basePrice: 1099,
+                    colors: [
+                        { name: 'Space Black', code: '#1D1D1F' },
+                        { name: 'Titanium Gray', code: '#8E8E93' },
+                        { name: 'Deep Purple', code: '#5856D6' },
+                        { name: 'Gold', code: '#F5DDC5' },
+                        { name: 'Silver', code: '#F2F2F7' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    partPrefix: 'MTVQ3',
+                    specs: '6.3-inch Super Retina XDR display\nA19 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display with ProMotion\nTitanium design\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                },
+                'iPhone 17': {
+                    basePrice: 899,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Green', code: '#34C759' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Yellow', code: '#FFCC00' },
+                        { name: 'White', code: '#F2F2F7' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MTVJ3',
+                    specs: '6.3-inch Super Retina XDR display\nA19 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                'iPhone 16 Pro Max': {
+                    basePrice: 1199,
+                    colors: [
+                        { name: 'Space Black', code: '#1D1D1F' },
+                        { name: 'Titanium Gray', code: '#8E8E93' },
+                        { name: 'Deep Purple', code: '#5856D6' },
+                        { name: 'Gold', code: '#F5DDC5' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    partPrefix: 'MU6A3',
+                    specs: '6.7-inch Super Retina XDR display\nA18 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display with ProMotion\nTitanium design\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                },
+                'iPhone 16 Pro': {
+                    basePrice: 999,
+                    colors: [
+                        { name: 'Space Black', code: '#1D1D1F' },
+                        { name: 'Titanium Gray', code: '#8E8E93' },
+                        { name: 'Deep Purple', code: '#5856D6' },
+                        { name: 'Gold', code: '#F5DDC5' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    partPrefix: 'MU653',
+                    specs: '6.1-inch Super Retina XDR display\nA18 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display with ProMotion\nTitanium design\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                },
+                'iPhone 16': {
+                    basePrice: 799,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Green', code: '#34C759' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Yellow', code: '#FFCC00' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MU5T3',
+                    specs: '6.1-inch Super Retina XDR display\nA18 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                'iPhone 15 Pro Max': {
+                    basePrice: 1099,
+                    colors: [
+                        { name: 'Black Titanium', code: '#1D1D1F' },
+                        { name: 'White Titanium', code: '#F2F2F7' },
+                        { name: 'Blue Titanium', code: '#5AC8FA' },
+                        { name: 'Natural Titanium', code: '#8E8E93' }
+                    ],
+                    storage: ['256GB', '512GB', '1TB'],
+                    partPrefix: 'MU2R3',
+                    specs: '6.7-inch Super Retina XDR display\nA17 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nTitanium design\nUSB-C connector\n5G capable',
+                    priceMultiplier: { '256GB': 1, '512GB': 1.3, '1TB': 1.6 }
+                },
+                'iPhone 15 Pro': {
+                    basePrice: 999,
+                    colors: [
+                        { name: 'Black Titanium', code: '#1D1D1F' },
+                        { name: 'White Titanium', code: '#F2F2F7' },
+                        { name: 'Blue Titanium', code: '#5AC8FA' },
+                        { name: 'Natural Titanium', code: '#8E8E93' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    partPrefix: 'MU2Q3',
+                    specs: '6.1-inch Super Retina XDR display\nA17 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nTitanium design\nUSB-C connector\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                },
+                'iPhone 15': {
+                    basePrice: 699,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Green', code: '#30D158' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Yellow', code: '#FFD60A' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MU2N3',
+                    specs: '6.1-inch Super Retina XDR display\nA16 Bionic chip\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                'iPhone 14 Pro Max': {
+                    basePrice: 1099,
+                    colors: [
+                        { name: 'Space Black', code: '#1D1D1F' },
+                        { name: 'Deep Purple', code: '#5856D6' },
+                        { name: 'Gold', code: '#F5DDC5' },
+                        { name: 'Silver', code: '#F2F2F7' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    partPrefix: 'MQ9X3',
+                    specs: '6.7-inch Super Retina XDR display\nA16 Bionic chip\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display\nDynamic Island\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                },
+                'iPhone 14 Pro': {
+                    basePrice: 999,
+                    colors: [
+                        { name: 'Space Black', code: '#1D1D1F' },
+                        { name: 'Deep Purple', code: '#5856D6' },
+                        { name: 'Gold', code: '#F5DDC5' },
+                        { name: 'Silver', code: '#F2F2F7' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    partPrefix: 'MQ9T3',
+                    specs: '6.1-inch Super Retina XDR display\nA16 Bionic chip\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display\nDynamic Island\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                },
+                'iPhone 14': {
+                    basePrice: 699,
+                    colors: [
+                        { name: 'Midnight', code: '#1D1D1F' },
+                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Blue', code: '#0A84FF' },
+                        { name: 'Purple', code: '#BF5AF2' },
+                        { name: 'Red', code: '#FF3B30' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MPV03',
+                    specs: '6.1-inch Super Retina XDR display\nA15 Bionic chip\n12MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                'iPhone 13 Pro Max': {
+                    basePrice: 1099,
+                    colors: [
+                        { name: 'Graphite', code: '#1D1D1F' },
+                        { name: 'Gold', code: '#F5DDC5' },
+                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Sierra Blue', code: '#5AC8FA' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    partPrefix: 'MLK53',
+                    specs: '6.7-inch Super Retina XDR display\nA15 Bionic chip\n12MP Main + 12MP Ultra Wide + 12MP Telephoto\nProMotion technology\nCeramic Shield front\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                },
+                'iPhone 13 Pro': {
+                    basePrice: 999,
+                    colors: [
+                        { name: 'Graphite', code: '#1D1D1F' },
+                        { name: 'Gold', code: '#F5DDC5' },
+                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Sierra Blue', code: '#5AC8FA' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    partPrefix: 'MLH93',
+                    specs: '6.1-inch Super Retina XDR display\nA15 Bionic chip\n12MP Main + 12MP Ultra Wide + 12MP Telephoto\nProMotion technology\nCeramic Shield front\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                },
+                'iPhone 13': {
+                    basePrice: 599,
+                    colors: [
+                        { name: 'Midnight', code: '#1D1D1F' },
+                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Blue', code: '#0A84FF' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Red', code: '#FF3B30' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MLQ73',
+                    specs: '6.1-inch Super Retina XDR display\nA15 Bionic chip\n12MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                'iPhone 12 Pro Max': {
+                    basePrice: 1099,
+                    colors: [
+                        { name: 'Graphite', code: '#1D1D1F' },
+                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Gold', code: '#F5DDC5' },
+                        { name: 'Pacific Blue', code: '#0A84FF' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MGA83',
+                    specs: '6.7-inch Super Retina XDR display\nA14 Bionic chip\n12MP Main + 12MP Ultra Wide + 12MP Telephoto\nCeramic Shield front\nSurgical-grade stainless steel\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                'iPhone 12 Pro': {
+                    basePrice: 999,
+                    colors: [
+                        { name: 'Graphite', code: '#1D1D1F' },
+                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Gold', code: '#F5DDC5' },
+                        { name: 'Pacific Blue', code: '#0A84FF' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MG9J3',
+                    specs: '6.1-inch Super Retina XDR display\nA14 Bionic chip\n12MP Main + 12MP Ultra Wide + 12MP Telephoto\nCeramic Shield front\nSurgical-grade stainless steel\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                'iPhone 12': {
+                    basePrice: 599,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'White', code: '#F2F2F7' },
+                        { name: 'Green', code: '#30D158' },
+                        { name: 'Blue', code: '#0A84FF' },
+                        { name: 'Red', code: '#FF3B30' }
+                    ],
+                    storage: ['64GB', '128GB', '256GB'],
+                    partPrefix: 'MGJ53',
+                    specs: '6.1-inch Super Retina XDR display\nA14 Bionic chip\n12MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '64GB': 1, '128GB': 1.1, '256GB': 1.3 }
+                }
+            },
+            ipad: {
+                'iPad Pro 13" M4': {
+                    basePrice: 1299,
+                    colors: [
+                        { name: 'Space Gray', code: '#1D1D1F' },
+                        { name: 'Silver', code: '#F2F2F7' }
+                    ],
+                    storage: ['256GB', '512GB', '1TB', '2TB'],
+                    partPrefix: 'MXAK2',
+                    specs: '13-inch Liquid Retina XDR display\nM4 chip with 10-core CPU\n12MP front camera with Center Stage\nThunderbolt / USB 4 port\nFace ID\nSupports Apple Pencil Pro',
+                    priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
+                }
+            },
+            mac: {
+                'MacBook Pro 16" M3 Max': {
+                    basePrice: 3499,
+                    colors: [
+                        { name: 'Space Black', code: '#1D1D1F' },
+                        { name: 'Silver', code: '#F2F2F7' }
+                    ],
+                    storage: ['1TB', '2TB', '4TB', '8TB'],
+                    partPrefix: 'MRX13',
+                    specs: '16.2-inch Liquid Retina XDR display\nM3 Max chip with 16-core CPU and 40-core GPU\n48GB Unified Memory\n140W USB-C Power Adapter\nThree Thunderbolt 4 ports, HDMI port, SDXC card slot',
+                    priceMultiplier: { '1TB': 1, '2TB': 1.2, '4TB': 1.5, '8TB': 2.0 }
+                }
+            },
+            watch: {
+                'Apple Watch Ultra 2': {
+                    basePrice: 799,
+                    colors: [
+                        { name: 'Titanium Case', code: '#8E8E93' }
+                    ],
+                    storage: ['GPS + Cellular'],
+                    partPrefix: 'MTE03',
+                    specs: '49mm Titanium case\nAlways-On Retina display\nDual-frequency GPS\nDepth gauge with water temperature sensor\nAction button\nUp to 36 hours battery life',
+                    priceMultiplier: { 'GPS + Cellular': 1 }
+                }
+            },
+            airpods: {
+                'AirPods Pro (2nd Generation)': {
+                    basePrice: 249,
+                    colors: [
+                        { name: 'White', code: '#F2F2F7' }
+                    ],
+                    storage: ['Standard'],
+                    partPrefix: 'MQD83',
+                    specs: 'Active Noise Cancellation\nAdaptive Transparency\nPersonalized Spatial Audio\nMagSafe Charging Case\nUp to 6 hours of listening time',
+                    priceMultiplier: { 'Standard': 1 }
+                }
+            }
+        };
+
+        // Sample products data
+        let products = [
+            {
+                name: "iPhone 15 Pro Max",
+                specs: "6.7-inch Super Retina XDR display\nA17 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nTitanium design\nUSB-C connector\n5G capable",
+                model: "iPhone 15 Pro Max",
+                color: "Natural Titanium",
+                storage: "256GB",
+                partNumber: "MU2R3LL/A",
+                serial: "C02XL0WYMD6R",
+                imei1: "35 123456 789012 3",
+                imei2: "35 123456 789012 4",
+                qty: 1,
+                price: 1199.00
+            }
+        ];
+        
+        // Initialize receipt
+        document.addEventListener('DOMContentLoaded', function() {
+            populateModelSelect();
+            updatePriceDisplay();
+            updateReceipt();
+            updateProductsList();
+            
+            // Set current date and time as default
+            const now = new Date();
+            document.getElementById('receipt-date-input').valueAsDate = now;
+            document.getElementById('receipt-time-input').value = 
+                `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            
+            // Add event listeners
+            document.getElementById('update-receipt-btn').addEventListener('click', updateReceipt);
+            document.getElementById('add-product-btn').addEventListener('click', addProduct);
+            document.getElementById('clear-products-btn').addEventListener('click', clearProducts);
+            document.getElementById('print-receipt-btn').addEventListener('click', printReceipt);
+            document.getElementById('export-pdf-btn').addEventListener('click', exportToPDF);
+            
+            // Category change
+            document.getElementById('product-category').addEventListener('change', function() {
+                populateModelSelect();
+                updatePriceDisplay();
+            });
+            
+            // Model change
+            document.getElementById('product-model-select').addEventListener('change', function() {
+                updateColorSelect();
+                updateStorageSelect();
+                updatePriceDisplay();
+                updatePartNumber();
+                updateSpecs();
+            });
+            
+            // Color change
+            document.getElementById('product-color').addEventListener('change', updatePriceDisplay);
+            
+            // Storage change
+            document.getElementById('product-storage').addEventListener('change', function() {
+                updatePriceDisplay();
+                updatePartNumber();
+            });
+            
+            // Auto-update receipt when inputs change
+            const inputs = document.querySelectorAll('.controls input, .controls textarea, .controls select');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateReceipt);
+            });
+        });
+        
+        // Populate model select based on category
+        function populateModelSelect() {
+            const category = document.getElementById('product-category').value;
+            const modelSelect = document.getElementById('product-model-select');
+            modelSelect.innerHTML = '';
+            
+            if (appleProducts[category]) {
+                Object.keys(appleProducts[category]).forEach(model => {
+                    const option = document.createElement('option');
+                    option.value = model;
+                    option.textContent = model;
+                    modelSelect.appendChild(option);
+                });
+                
+                // Update color and storage selects
+                updateColorSelect();
+                updateStorageSelect();
+                updatePriceDisplay();
+                updatePartNumber();
+                updateSpecs();
+            }
+        }
+        
+        // Update color select based on selected model
+        function updateColorSelect() {
+            const category = document.getElementById('product-category').value;
+            const model = document.getElementById('product-model-select').value;
+            const colorSelect = document.getElementById('product-color');
+            colorSelect.innerHTML = '';
+            
+            if (appleProducts[category] && appleProducts[category][model]) {
+                const colors = appleProducts[category][model].colors;
+                
+                colors.forEach(color => {
+                    const option = document.createElement('option');
+                    option.value = color.name;
+                    option.textContent = color.name;
+                    option.dataset.colorCode = color.code;
+                    colorSelect.appendChild(option);
+                });
+                
+                // Update color preview in dropdown
+                const options = colorSelect.querySelectorAll('option');
+                options.forEach(option => {
+                    const colorCode = option.dataset.colorCode;
+                    option.style.backgroundImage = `radial-gradient(circle at 10px center, ${colorCode} 10px, transparent 11px)`;
+                    option.style.backgroundRepeat = 'no-repeat';
+                    option.style.paddingLeft = '30px';
+                });
+            }
+        }
+        
+        // Update storage select based on selected model
+        function updateStorageSelect() {
+            const category = document.getElementById('product-category').value;
+            const model = document.getElementById('product-model-select').value;
+            const storageSelect = document.getElementById('product-storage');
+            storageSelect.innerHTML = '';
+            
+            if (appleProducts[category] && appleProducts[category][model]) {
+                const storageOptions = appleProducts[category][model].storage;
+                
+                storageOptions.forEach(storage => {
+                    const option = document.createElement('option');
+                    option.value = storage;
+                    option.textContent = storage;
+                    storageSelect.appendChild(option);
+                });
+            }
+        }
+        
+        // Update part number based on selections
+        function updatePartNumber() {
+            const category = document.getElementById('product-category').value;
+            const model = document.getElementById('product-model-select').value;
+            const color = document.getElementById('product-color').value;
+            const storage = document.getElementById('product-storage').value;
+            
+            if (appleProducts[category] && appleProducts[category][model]) {
+                const product = appleProducts[category][model];
+                const colorCode = getColorCode(category, model, color);
+                const storageCode = getStorageCode(category, model, storage);
+                
+                // Generate a realistic part number
+                const partNumber = `${product.partPrefix}${colorCode}${storageCode}/A`;
+                document.getElementById('product-part').value = partNumber;
+            }
+        }
+        
+        // Update specifications textarea
+        function updateSpecs() {
+            const category = document.getElementById('product-category').value;
+            const model = document.getElementById('product-model-select').value;
+            
+            if (appleProducts[category] && appleProducts[category][model]) {
+                const specs = appleProducts[category][model].specs;
+                document.getElementById('product-specs-custom').value = specs;
+            }
+        }
+        
+        // Calculate and display price
+        function updatePriceDisplay() {
+            const category = document.getElementById('product-category').value;
+            const model = document.getElementById('product-model-select').value;
+            const storage = document.getElementById('product-storage').value;
+            
+            if (appleProducts[category] && appleProducts[category][model]) {
+                const product = appleProducts[category][model];
+                const priceMultiplier = product.priceMultiplier[storage] || 1;
+                const calculatedPrice = product.basePrice * priceMultiplier;
+                
+                document.getElementById('price-display').innerHTML = 
+                    `Price: <strong>€ ${calculatedPrice.toFixed(2)}</strong>`;
+                
+                // Update custom price placeholder
+                document.getElementById('product-price-custom').placeholder = 
+                    `Auto: € ${calculatedPrice.toFixed(2)}`;
+            }
+        }
+        
+        // Get color code for part number
+        function getColorCode(category, model, colorName) {
+            // Simplified color coding
+            const colorMap = {
+                'Space Black': 'LL',
+                'Black': 'LL',
+                'Graphite': 'LL',
+                'Midnight': 'LL',
+                'Titanium Gray': 'RM',
+                'Gray': 'RM',
+                'Natural Titanium': 'RM',
+                'Space Gray': 'RM',
+                'Deep Purple': 'PU',
+                'Purple': 'PU',
+                'Blue': 'BU',
+                'Pacific Blue': 'BU',
+                'Sierra Blue': 'BU',
+                'Blue Titanium': 'BU',
+                'Green': 'GR',
+                'Alpine Green': 'GR',
+                'Pink': 'PK',
+                'Red': 'RD',
+                'Gold': 'GD',
+                'Yellow': 'YL',
+                'White': 'WT',
+                'Silver': 'WT',
+                'Starlight': 'WT',
+                'White Titanium': 'WT'
+            };
+            
+            return colorMap[colorName] || 'LL';
+        }
+        
+        // Get storage code for part number
+        function getStorageCode(category, model, storage) {
+            // Simplified storage coding
+            const storageMap = {
+                '64GB': 'A',
+                '128GB': 'B',
+                '256GB': 'C',
+                '512GB': 'D',
+                '1TB': 'E',
+                '2TB': 'F',
+                '4TB': 'G',
+                '8TB': 'H',
+                'Standard': 'A',
+                'GPS + Cellular': 'B'
+            };
+            
+            return storageMap[storage] || 'A';
+        }
+        
+        // Format currency
+        function formatCurrency(amount) {
+            return `€ ${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+        }
+        
+        // Calculate totals
+        function calculateTotals() {
+            let subtotal = 0;
+            products.forEach(product => {
+                subtotal += product.price * product.qty;
+            });
+            
+            const vatRate = parseFloat(document.getElementById('vat-rate-input').value) || 23;
+            const vat = subtotal * (vatRate / 100);
+            const total = subtotal + vat;
+            
+            return { subtotal, vat, total, vatRate };
+        }
+        
+        // Update receipt preview
+        function updateReceipt() {
+            // Update store details
+            document.getElementById('store-name').textContent = document.getElementById('store-name-input').value;
+            document.getElementById('store-address').textContent = document.getElementById('store-address-input').value;
+            
+            // Update receipt details
+            const dateInput = document.getElementById('receipt-date-input').value;
+            const timeInput = document.getElementById('receipt-time-input').value;
+            
+            if (dateInput) {
+                const dateObj = new Date(dateInput);
+                const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                    month: 'long', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                });
+                document.getElementById('receipt-date').textContent = formattedDate;
+            }
+            
+            if (timeInput) {
+                const [hours, minutes] = timeInput.split(':');
+                const timeObj = new Date();
+                timeObj.setHours(hours);
+                timeObj.setMinutes(minutes);
+                const formattedTime = timeObj.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    hour12: true 
+                });
+                document.getElementById('receipt-time').textContent = formattedTime;
+            }
+            
+            document.getElementById('receipt-number').textContent = document.getElementById('receipt-number-input').value;
+            document.getElementById('customer-name').textContent = document.getElementById('customer-name-input').value;
+            document.getElementById('payment-method').textContent = document.getElementById('payment-method-input').value;
+            
+            // Update items list
+            const itemsList = document.getElementById('items-list');
+            itemsList.innerHTML = '';
+            
+            products.forEach((product, index) => {
+                const row = document.createElement('tr');
+                
+                // Item name and details
+                const itemCell = document.createElement('td');
+                itemCell.innerHTML = `
+                    <div><strong>${product.name} ${product.storage} - ${product.color}</strong></div>
+                    <div class="item-specs">${product.specs.replace(/\n/g, '<br>')}</div>
+                    <div class="item-details">
+                        <div><strong>Model:</strong> ${product.model}</div>
+                        <div><strong>Part No:</strong> ${product.partNumber}</div>
+                        <div><strong>Serial:</strong> ${product.serial}</div>
+                        ${product.imei1 ? `<div><strong>IMEI 1:</strong> ${product.imei1}</div>` : ''}
+                        ${product.imei2 ? `<div><strong>IMEI 2:</strong> ${product.imei2}</div>` : ''}
+                    </div>
+                `;
+                
+                // Quantity
+                const qtyCell = document.createElement('td');
+                qtyCell.textContent = product.qty;
+                
+                // Price
+                const priceCell = document.createElement('td');
+                priceCell.style.textAlign = 'right';
+                priceCell.textContent = formatCurrency(product.price);
+                
+                row.appendChild(itemCell);
+                row.appendChild(qtyCell);
+                row.appendChild(priceCell);
+                itemsList.appendChild(row);
+            });
+            
+            // Update totals
+            const totals = calculateTotals();
+            document.getElementById('subtotal').textContent = formatCurrency(totals.subtotal);
+            document.getElementById('vat').textContent = formatCurrency(totals.vat);
+            document.getElementById('total').textContent = formatCurrency(totals.total);
+        }
+        
+        // Add new product
+        function addProduct() {
+            const category = document.getElementById('product-category').value;
+            const model = document.getElementById('product-model-select').value;
+            const color = document.getElementById('product-color').value;
+            const storage = document.getElementById('product-storage').value;
+            const specs = document.getElementById('product-specs-custom').value;
+            const partNumber = document.getElementById('product-part').value;
+            const serial = document.getElementById('product-serial').value;
+            const imei1 = document.getElementById('product-imei1').value;
+            const imei2 = document.getElementById('product-imei2').value;
+            const qty = parseInt(document.getElementById('product-qty').value) || 1;
+            
+            let price = parseFloat(document.getElementById('product-price-custom').value);
+            
+            // If no custom price, calculate from product database
+            if (!price || price <= 0) {
+                if (appleProducts[category] && appleProducts[category][model]) {
+                    const product = appleProducts[category][model];
+                    const priceMultiplier = product.priceMultiplier[storage] || 1;
+                    price = product.basePrice * priceMultiplier;
+                } else {
+                    price = 0;
+                }
+            }
+            
+            if (!model) {
+                alert('Please select a product model');
+                return;
+            }
+            
+            const fullProductName = `${model} ${storage} - ${color}`;
+            
+            products.push({
+                name: fullProductName,
+                specs,
+                model,
+                color,
+                storage,
+                partNumber,
+                serial,
+                imei1,
+                imei2,
+                qty,
+                price
+            });
+            
+            // Clear form except category and model
+            document.getElementById('product-serial').value = '';
+            document.getElementById('product-imei1').value = '';
+            document.getElementById('product-imei2').value = '';
+            document.getElementById('product-qty').value = 1;
+            document.getElementById('product-price-custom').value = '';
+            
+            updateReceipt();
+            updateProductsList();
+        }
+        
+        // Clear all products
+        function clearProducts() {
+            if (confirm('Are you sure you want to remove all products?')) {
+                products = [];
+                updateReceipt();
+                updateProductsList();
+            }
+        }
+        
+        // Remove a product
+        function removeProduct(index) {
+            products.splice(index, 1);
+            updateReceipt();
+            updateProductsList();
+        }
+        
+        // Update products list in controls
+        function updateProductsList() {
+            const productsList = document.getElementById('products-list');
+            productsList.innerHTML = '';
+            
+            if (products.length === 0) {
+                productsList.innerHTML = '<div style="text-align: center; color: #86868b; padding: 20px;">No products added yet</div>';
+                return;
+            }
+            
+            products.forEach((product, index) => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                productItem.innerHTML = `
+                    <div class="product-name">${product.name}</div>
+                    <div style="display: flex; align-items: center;">
+                        <div class="product-price">${formatCurrency(product.price)}</div>
+                        <div class="remove-product" onclick="removeProduct(${index})">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                `;
+                productsList.appendChild(productItem);
+            });
+        }
+        
+        // Print receipt
+        function printReceipt() {
+            window.print();
+        }
+        
+        // Export to PDF
+        function exportToPDF() {
+            const receiptElement = document.getElementById('receipt');
+            
+            html2canvas(receiptElement, {
+                scale: 2,
+                backgroundColor: '#ffffff',
+                useCORS: true,
+                logging: false
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jspdf.jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: [80, 297] // Standard receipt size (80mm width)
+                });
+                
+                const imgWidth = 80;
+                const imgHeight = canvas.height * imgWidth / canvas.width;
+                
+                pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                pdf.save(`apple-receipt-${document.getElementById('receipt-number-input').value}.pdf`);
+            });
+        }
+    </script>
+</body>
+</html>
