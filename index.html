@@ -556,28 +556,12 @@
         .btn-group .btn {
             margin-top: 0;
         }
-        
-        .receipt-meta {
-            font-size: 12px;
-            color: #86868b;
-            margin-top: 4px;
-        }
-        
-        .model-year {
-            background-color: #007AFF;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-left: 6px;
-        }
     </style>
 </head>
 <body>
     <div class="page-title">
         <h1><i class="fab fa-apple"></i> Apple Store Receipt Generator</h1>
-        <p>Create professional Apple receipts with all iPhone models from 12 to 17</p>
+        <p>Create professional Apple receipts with ALL iPhone models from 12 to 17</p>
     </div>
     
     <div class="container">
@@ -831,37 +815,36 @@
     </div>
 
     <script>
-        // COMPLETE Apple Products Database - ALL MODELS iPhone 12 to 17
+        // COMPLETE Apple Products Database - ALL iPhone models 12 to 17
         const appleProducts = {
             iphone: {
-                // iPhone 17 Series
+                // iPhone 17 Series (Future models - realistic predictions)
                 'iPhone 17 Pro Max': {
-                    basePrice: 1299,
+                    basePrice: 1399,
                     colors: [
                         { name: 'Space Black', code: '#1D1D1F' },
                         { name: 'Titanium Gray', code: '#8E8E93' },
                         { name: 'Deep Purple', code: '#5856D6' },
                         { name: 'Gold', code: '#F5DDC5' },
-                        { name: 'Silver', code: '#F2F2F7' },
-                        { name: 'Alpine Green', code: '#576856' }
+                        { name: 'Silver', code: '#F2F2F2' }
                     ],
-                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    storage: ['256GB', '512GB', '1TB', '2TB'],
                     partPrefix: 'MTVU3',
-                    specs: '6.9-inch Super Retina XDR display\nA19 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display with ProMotion\nTitanium design\n5G capable\nEmergency SOS via satellite',
-                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                    specs: '7.1-inch Super Retina XDR ProMotion display\nA19 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP 5x Telephoto\nAlways-On display\nTitanium design\nUSB-C connector\n5G Advanced',
+                    priceMultiplier: { '256GB': 1, '512GB': 1.3, '1TB': 1.6, '2TB': 2.0 }
                 },
                 'iPhone 17 Pro': {
-                    basePrice: 1099,
+                    basePrice: 1199,
                     colors: [
                         { name: 'Space Black', code: '#1D1D1F' },
                         { name: 'Titanium Gray', code: '#8E8E93' },
                         { name: 'Deep Purple', code: '#5856D6' },
                         { name: 'Gold', code: '#F5DDC5' },
-                        { name: 'Silver', code: '#F2F2F7' }
+                        { name: 'Silver', code: '#F2F2F2' }
                     ],
                     storage: ['128GB', '256GB', '512GB', '1TB'],
                     partPrefix: 'MTVQ3',
-                    specs: '6.3-inch Super Retina XDR display\nA19 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display with ProMotion\nTitanium design\n5G capable',
+                    specs: '6.3-inch Super Retina XDR ProMotion display\nA19 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP 3x Telephoto\nAlways-On display\nTitanium design\nUSB-C connector\n5G Advanced',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
                 },
                 'iPhone 17': {
@@ -869,14 +852,13 @@
                     colors: [
                         { name: 'Black', code: '#1D1D1F' },
                         { name: 'Blue', code: '#007AFF' },
-                        { name: 'Green', code: '#34C759' },
+                        { name: 'Green', code: '#4CD964' },
                         { name: 'Pink', code: '#FF2D55' },
-                        { name: 'Yellow', code: '#FFCC00' },
-                        { name: 'White', code: '#F2F2F7' }
+                        { name: 'Yellow', code: '#FFCC00' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
                     partPrefix: 'MTVJ3',
-                    specs: '6.3-inch Super Retina XDR display\nA19 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    specs: '6.3-inch Super Retina XDR display\nA19 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector\nDynamic Island',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
                 'iPhone 17 Plus': {
@@ -884,33 +866,32 @@
                     colors: [
                         { name: 'Black', code: '#1D1D1F' },
                         { name: 'Blue', code: '#007AFF' },
-                        { name: 'Green', code: '#34C759' },
+                        { name: 'Green', code: '#4CD964' },
                         { name: 'Pink', code: '#FF2D55' },
-                        { name: 'Yellow', code: '#FFCC00' },
-                        { name: 'White', code: '#F2F2F7' }
+                        { name: 'Yellow', code: '#FFCC00' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
                     partPrefix: 'MTVN3',
-                    specs: '6.9-inch Super Retina XDR display\nA19 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    specs: '6.9-inch Super Retina XDR display\nA19 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector\nDynamic Island',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
                 
-                // iPhone 16 Series
+                // iPhone 16 Series (Future models - realistic predictions)
                 'iPhone 16 Pro Max': {
-                    basePrice: 1199,
+                    basePrice: 1299,
                     colors: [
                         { name: 'Space Black', code: '#1D1D1F' },
                         { name: 'Titanium Gray', code: '#8E8E93' },
                         { name: 'Deep Purple', code: '#5856D6' },
                         { name: 'Gold', code: '#F5DDC5' }
                     ],
-                    storage: ['128GB', '256GB', '512GB', '1TB'],
+                    storage: ['256GB', '512GB', '1TB', '2TB'],
                     partPrefix: 'MU6A3',
-                    specs: '6.7-inch Super Retina XDR display\nA18 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display with ProMotion\nTitanium design\n5G capable',
-                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
+                    specs: '6.9-inch Super Retina XDR ProMotion display\nA18 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP 5x Telephoto\nAlways-On display\nTitanium design\nUSB-C connector\n5G Advanced',
+                    priceMultiplier: { '256GB': 1, '512GB': 1.3, '1TB': 1.6, '2TB': 2.0 }
                 },
                 'iPhone 16 Pro': {
-                    basePrice: 999,
+                    basePrice: 1099,
                     colors: [
                         { name: 'Space Black', code: '#1D1D1F' },
                         { name: 'Titanium Gray', code: '#8E8E93' },
@@ -919,7 +900,7 @@
                     ],
                     storage: ['128GB', '256GB', '512GB', '1TB'],
                     partPrefix: 'MU653',
-                    specs: '6.1-inch Super Retina XDR display\nA18 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nAlways-On display with ProMotion\nTitanium design\n5G capable',
+                    specs: '6.3-inch Super Retina XDR ProMotion display\nA18 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP 3x Telephoto\nAlways-On display\nTitanium design\nUSB-C connector\n5G Advanced',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
                 },
                 'iPhone 16': {
@@ -927,13 +908,13 @@
                     colors: [
                         { name: 'Black', code: '#1D1D1F' },
                         { name: 'Blue', code: '#007AFF' },
-                        { name: 'Green', code: '#34C759' },
+                        { name: 'Green', code: '#4CD964' },
                         { name: 'Pink', code: '#FF2D55' },
                         { name: 'Yellow', code: '#FFCC00' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
                     partPrefix: 'MU5T3',
-                    specs: '6.1-inch Super Retina XDR display\nA18 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    specs: '6.3-inch Super Retina XDR display\nA18 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector\nDynamic Island',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
                 'iPhone 16 Plus': {
@@ -941,69 +922,69 @@
                     colors: [
                         { name: 'Black', code: '#1D1D1F' },
                         { name: 'Blue', code: '#007AFF' },
-                        { name: 'Green', code: '#34C759' },
+                        { name: 'Green', code: '#4CD964' },
                         { name: 'Pink', code: '#FF2D55' },
                         { name: 'Yellow', code: '#FFCC00' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
                     partPrefix: 'MU5U3',
-                    specs: '6.7-inch Super Retina XDR display\nA18 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    specs: '6.9-inch Super Retina XDR display\nA18 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector\nDynamic Island',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
                 
-                // iPhone 15 Series
+                // iPhone 15 Series (Current models on Apple.com)
                 'iPhone 15 Pro Max': {
-                    basePrice: 1099,
+                    basePrice: 1199,
                     colors: [
-                        { name: 'Black Titanium', code: '#1D1D1F' },
-                        { name: 'White Titanium', code: '#F2F2F7' },
-                        { name: 'Blue Titanium', code: '#5AC8FA' },
-                        { name: 'Natural Titanium', code: '#8E8E93' }
+                        { name: 'Black Titanium', code: '#3C3C3C' },
+                        { name: 'White Titanium', code: '#F2F2F2' },
+                        { name: 'Natural Titanium', code: '#D9D9D9' },
+                        { name: 'Blue Titanium', code: '#5D8AA8' }
                     ],
                     storage: ['256GB', '512GB', '1TB'],
                     partPrefix: 'MU2R3',
-                    specs: '6.7-inch Super Retina XDR display\nA17 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nTitanium design\nUSB-C connector\n5G capable',
+                    specs: '6.7-inch Super Retina XDR display\nA17 Pro chip\n48MP Main + 12MP Ultra Wide + 12MP 5x Telephoto\nTitanium design\nUSB-C connector\n5G capable\nAction button',
                     priceMultiplier: { '256GB': 1, '512GB': 1.3, '1TB': 1.6 }
                 },
                 'iPhone 15 Pro': {
                     basePrice: 999,
                     colors: [
-                        { name: 'Black Titanium', code: '#1D1D1F' },
-                        { name: 'White Titanium', code: '#F2F2F7' },
-                        { name: 'Blue Titanium', code: '#5AC8FA' },
-                        { name: 'Natural Titanium', code: '#8E8E93' }
+                        { name: 'Black Titanium', code: '#3C3C3C' },
+                        { name: 'White Titanium', code: '#F2F2F2' },
+                        { name: 'Natural Titanium', code: '#D9D9D9' },
+                        { name: 'Blue Titanium', code: '#5D8AA8' }
                     ],
                     storage: ['128GB', '256GB', '512GB', '1TB'],
                     partPrefix: 'MU2Q3',
-                    specs: '6.1-inch Super Retina XDR display\nA17 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nTitanium design\nUSB-C connector\n5G capable',
+                    specs: '6.1-inch Super Retina XDR display\nA17 Pro chip\n48MP Main + 12MP Ultra Wide + 12MP 3x Telephoto\nTitanium design\nUSB-C connector\n5G capable\nAction button',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4, '1TB': 1.7 }
                 },
                 'iPhone 15': {
-                    basePrice: 699,
-                    colors: [
-                        { name: 'Black', code: '#1D1D1F' },
-                        { name: 'Blue', code: '#007AFF' },
-                        { name: 'Green', code: '#30D158' },
-                        { name: 'Pink', code: '#FF2D55' },
-                        { name: 'Yellow', code: '#FFD60A' }
-                    ],
-                    storage: ['128GB', '256GB', '512GB'],
-                    partPrefix: 'MU2N3',
-                    specs: '6.1-inch Super Retina XDR display\nA16 Bionic chip\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector',
-                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
-                },
-                'iPhone 15 Plus': {
                     basePrice: 799,
                     colors: [
                         { name: 'Black', code: '#1D1D1F' },
                         { name: 'Blue', code: '#007AFF' },
-                        { name: 'Green', code: '#30D158' },
+                        { name: 'Green', code: '#4CD964' },
                         { name: 'Pink', code: '#FF2D55' },
-                        { name: 'Yellow', code: '#FFD60A' }
+                        { name: 'Yellow', code: '#FFCC00' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MU2N3',
+                    specs: '6.1-inch Super Retina XDR display\nA16 Bionic chip\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector\nDynamic Island',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                'iPhone 15 Plus': {
+                    basePrice: 899,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Green', code: '#4CD964' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Yellow', code: '#FFCC00' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
                     partPrefix: 'MU2P3',
-                    specs: '6.7-inch Super Retina XDR display\nA16 Bionic chip\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector',
+                    specs: '6.7-inch Super Retina XDR display\nA16 Bionic chip\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector\nDynamic Island',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
                 
@@ -1011,10 +992,10 @@
                 'iPhone 14 Pro Max': {
                     basePrice: 1099,
                     colors: [
-                        { name: 'Space Black', code: '#1D1D1F' },
-                        { name: 'Deep Purple', code: '#5856D6' },
+                        { name: 'Deep Purple', code: '#4B3C5E' },
                         { name: 'Gold', code: '#F5DDC5' },
-                        { name: 'Silver', code: '#F2F2F7' }
+                        { name: 'Silver', code: '#F2F2F2' },
+                        { name: 'Space Black', code: '#1D1D1F' }
                     ],
                     storage: ['128GB', '256GB', '512GB', '1TB'],
                     partPrefix: 'MQ9X3',
@@ -1024,10 +1005,10 @@
                 'iPhone 14 Pro': {
                     basePrice: 999,
                     colors: [
-                        { name: 'Space Black', code: '#1D1D1F' },
-                        { name: 'Deep Purple', code: '#5856D6' },
+                        { name: 'Deep Purple', code: '#4B3C5E' },
                         { name: 'Gold', code: '#F5DDC5' },
-                        { name: 'Silver', code: '#F2F2F7' }
+                        { name: 'Silver', code: '#F2F2F2' },
+                        { name: 'Space Black', code: '#1D1D1F' }
                     ],
                     storage: ['128GB', '256GB', '512GB', '1TB'],
                     partPrefix: 'MQ9T3',
@@ -1038,10 +1019,10 @@
                     basePrice: 699,
                     colors: [
                         { name: 'Midnight', code: '#1D1D1F' },
-                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Starlight', code: '#F2F2F2' },
                         { name: 'Blue', code: '#0A84FF' },
                         { name: 'Purple', code: '#BF5AF2' },
-                        { name: 'Red', code: '#FF3B30' }
+                        { name: '(PRODUCT)RED', code: '#FF3B30' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
                     partPrefix: 'MPV03',
@@ -1052,10 +1033,10 @@
                     basePrice: 799,
                     colors: [
                         { name: 'Midnight', code: '#1D1D1F' },
-                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Starlight', code: '#F2F2F2' },
                         { name: 'Blue', code: '#0A84FF' },
                         { name: 'Purple', code: '#BF5AF2' },
-                        { name: 'Red', code: '#FF3B30' }
+                        { name: '(PRODUCT)RED', code: '#FF3B30' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
                     partPrefix: 'MPV23',
@@ -1067,10 +1048,10 @@
                 'iPhone 13 Pro Max': {
                     basePrice: 1099,
                     colors: [
-                        { name: 'Graphite', code: '#1D1D1F' },
+                        { name: 'Graphite', code: '#3C3C3C' },
                         { name: 'Gold', code: '#F5DDC5' },
-                        { name: 'Silver', code: '#F2F2F7' },
-                        { name: 'Sierra Blue', code: '#5AC8FA' }
+                        { name: 'Silver', code: '#F2F2F2' },
+                        { name: 'Sierra Blue', code: '#A1C6DB' }
                     ],
                     storage: ['128GB', '256GB', '512GB', '1TB'],
                     partPrefix: 'MLK53',
@@ -1080,10 +1061,10 @@
                 'iPhone 13 Pro': {
                     basePrice: 999,
                     colors: [
-                        { name: 'Graphite', code: '#1D1D1F' },
+                        { name: 'Graphite', code: '#3C3C3C' },
                         { name: 'Gold', code: '#F5DDC5' },
-                        { name: 'Silver', code: '#F2F2F7' },
-                        { name: 'Sierra Blue', code: '#5AC8FA' }
+                        { name: 'Silver', code: '#F2F2F2' },
+                        { name: 'Sierra Blue', code: '#A1C6DB' }
                     ],
                     storage: ['128GB', '256GB', '512GB', '1TB'],
                     partPrefix: 'MLH93',
@@ -1094,10 +1075,10 @@
                     basePrice: 599,
                     colors: [
                         { name: 'Midnight', code: '#1D1D1F' },
-                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Starlight', code: '#F2F2F2' },
                         { name: 'Blue', code: '#0A84FF' },
                         { name: 'Pink', code: '#FF2D55' },
-                        { name: 'Red', code: '#FF3B30' }
+                        { name: '(PRODUCT)RED', code: '#FF3B30' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
                     partPrefix: 'MLQ73',
@@ -1108,10 +1089,10 @@
                     basePrice: 499,
                     colors: [
                         { name: 'Midnight', code: '#1D1D1F' },
-                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Starlight', code: '#F2F2F2' },
                         { name: 'Blue', code: '#0A84FF' },
                         { name: 'Pink', code: '#FF2D55' },
-                        { name: 'Red', code: '#FF3B30' }
+                        { name: '(PRODUCT)RED', code: '#FF3B30' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
                     partPrefix: 'MLK03',
@@ -1123,8 +1104,8 @@
                 'iPhone 12 Pro Max': {
                     basePrice: 1099,
                     colors: [
-                        { name: 'Graphite', code: '#1D1D1F' },
-                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Graphite', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' },
                         { name: 'Gold', code: '#F5DDC5' },
                         { name: 'Pacific Blue', code: '#0A84FF' }
                     ],
@@ -1136,8 +1117,8 @@
                 'iPhone 12 Pro': {
                     basePrice: 999,
                     colors: [
-                        { name: 'Graphite', code: '#1D1D1F' },
-                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Graphite', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' },
                         { name: 'Gold', code: '#F5DDC5' },
                         { name: 'Pacific Blue', code: '#0A84FF' }
                     ],
@@ -1150,10 +1131,10 @@
                     basePrice: 599,
                     colors: [
                         { name: 'Black', code: '#1D1D1F' },
-                        { name: 'White', code: '#F2F2F7' },
-                        { name: 'Green', code: '#30D158' },
+                        { name: 'White', code: '#F2F2F2' },
+                        { name: 'Green', code: '#4CD964' },
                         { name: 'Blue', code: '#0A84FF' },
-                        { name: 'Red', code: '#FF3B30' }
+                        { name: '(PRODUCT)RED', code: '#FF3B30' }
                     ],
                     storage: ['64GB', '128GB', '256GB'],
                     partPrefix: 'MGJ53',
@@ -1164,10 +1145,10 @@
                     basePrice: 499,
                     colors: [
                         { name: 'Black', code: '#1D1D1F' },
-                        { name: 'White', code: '#F2F2F7' },
-                        { name: 'Green', code: '#30D158' },
+                        { name: 'White', code: '#F2F2F2' },
+                        { name: 'Green', code: '#4CD964' },
                         { name: 'Blue', code: '#0A84FF' },
-                        { name: 'Red', code: '#FF3B30' }
+                        { name: '(PRODUCT)RED', code: '#FF3B30' }
                     ],
                     storage: ['64GB', '128GB', '256GB'],
                     partPrefix: 'MG9F3',
@@ -1177,22 +1158,22 @@
             },
             ipad: {
                 // iPad Pro Series
-                'iPad Pro 13" M4': {
+                'iPad Pro 13-inch M4': {
                     basePrice: 1299,
                     colors: [
-                        { name: 'Space Gray', code: '#1D1D1F' },
-                        { name: 'Silver', code: '#F2F2F7' }
+                        { name: 'Space Gray', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' }
                     ],
                     storage: ['256GB', '512GB', '1TB', '2TB'],
                     partPrefix: 'MXAK2',
                     specs: '13-inch Liquid Retina XDR display\nM4 chip with 10-core CPU\n12MP front camera with Center Stage\nThunderbolt / USB 4 port\nFace ID\nSupports Apple Pencil Pro',
                     priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
                 },
-                'iPad Pro 11" M4': {
+                'iPad Pro 11-inch M4': {
                     basePrice: 999,
                     colors: [
-                        { name: 'Space Gray', code: '#1D1D1F' },
-                        { name: 'Silver', code: '#F2F2F7' }
+                        { name: 'Space Gray', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' }
                     ],
                     storage: ['256GB', '512GB', '1TB', '2TB'],
                     partPrefix: 'MXAJ2',
@@ -1202,9 +1183,9 @@
                 'iPad Air M2': {
                     basePrice: 599,
                     colors: [
-                        { name: 'Space Gray', code: '#1D1D1F' },
-                        { name: 'Silver', code: '#F2F2F7' },
-                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Space Gray', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' },
+                        { name: 'Blue', code: '#0A84FF' },
                         { name: 'Purple', code: '#BF5AF2' }
                     ],
                     storage: ['128GB', '256GB', '512GB'],
@@ -1212,11 +1193,11 @@
                     specs: '10.9-inch Liquid Retina display\nM2 chip with 8-core CPU\n12MP front camera with Center Stage\nUSB-C connector\nTouch ID\nSupports Apple Pencil (2nd gen)',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.5 }
                 },
-                'iPad 10th Gen': {
+                'iPad (10th generation)': {
                     basePrice: 449,
                     colors: [
-                        { name: 'Silver', code: '#F2F2F7' },
-                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Silver', code: '#F2F2F2' },
+                        { name: 'Blue', code: '#0A84FF' },
                         { name: 'Pink', code: '#FF2D55' },
                         { name: 'Yellow', code: '#FFCC00' }
                     ],
@@ -1224,39 +1205,26 @@
                     partPrefix: 'MPQ03',
                     specs: '10.9-inch Liquid Retina display\nA14 Bionic chip\n12MP front camera with Center Stage\nUSB-C connector\nTouch ID in top button\nSupports Apple Pencil (1st gen)',
                     priceMultiplier: { '64GB': 1, '256GB': 1.3 }
-                },
-                'iPad mini 6': {
-                    basePrice: 499,
-                    colors: [
-                        { name: 'Space Gray', code: '#1D1D1F' },
-                        { name: 'Pink', code: '#FF2D55' },
-                        { name: 'Purple', code: '#BF5AF2' },
-                        { name: 'Starlight', code: '#F2F2F7' }
-                    ],
-                    storage: ['64GB', '256GB'],
-                    partPrefix: 'MK7R3',
-                    specs: '8.3-inch Liquid Retina display\nA15 Bionic chip\n12MP front camera with Center Stage\nUSB-C connector\nTouch ID in top button\nSupports Apple Pencil (2nd gen)',
-                    priceMultiplier: { '64GB': 1, '256GB': 1.3 }
                 }
             },
             mac: {
                 // MacBook Pro Series
-                'MacBook Pro 16" M3 Max': {
+                'MacBook Pro 16-inch M3 Max': {
                     basePrice: 3499,
                     colors: [
-                        { name: 'Space Black', code: '#1D1D1F' },
-                        { name: 'Silver', code: '#F2F2F7' }
+                        { name: 'Space Black', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' }
                     ],
                     storage: ['1TB', '2TB', '4TB', '8TB'],
                     partPrefix: 'MRX13',
                     specs: '16.2-inch Liquid Retina XDR display\nM3 Max chip with 16-core CPU and 40-core GPU\n48GB Unified Memory\n140W USB-C Power Adapter\nThree Thunderbolt 4 ports, HDMI port, SDXC card slot',
                     priceMultiplier: { '1TB': 1, '2TB': 1.2, '4TB': 1.5, '8TB': 2.0 }
                 },
-                'MacBook Pro 14" M3 Pro': {
+                'MacBook Pro 14-inch M3 Pro': {
                     basePrice: 1999,
                     colors: [
-                        { name: 'Space Black', code: '#1D1D1F' },
-                        { name: 'Silver', code: '#F2F2F7' }
+                        { name: 'Space Black', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' }
                     ],
                     storage: ['512GB', '1TB', '2TB', '4TB'],
                     partPrefix: 'MRX03',
@@ -1264,59 +1232,31 @@
                     priceMultiplier: { '512GB': 1, '1TB': 1.2, '2TB': 1.5, '4TB': 2.0 }
                 },
                 // MacBook Air Series
-                'MacBook Air 15" M3': {
+                'MacBook Air 15-inch M3': {
                     basePrice: 1299,
                     colors: [
                         { name: 'Midnight', code: '#1D1D1F' },
-                        { name: 'Starlight', code: '#F2F2F7' },
-                        { name: 'Space Gray', code: '#8E8E93' },
-                        { name: 'Silver', code: '#F2F2F7' }
+                        { name: 'Starlight', code: '#F2F2F2' },
+                        { name: 'Space Gray', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' }
                     ],
                     storage: ['256GB', '512GB', '1TB', '2TB'],
                     partPrefix: 'MQKW3',
                     specs: '15.3-inch Liquid Retina display\nM3 chip with 8-core CPU and 10-core GPU\n8GB Unified Memory\n30W USB-C Power Adapter\nTwo Thunderbolt / USB 4 ports, MagSafe 3 charging',
                     priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
                 },
-                'MacBook Air 13" M3': {
+                'MacBook Air 13-inch M3': {
                     basePrice: 1099,
                     colors: [
                         { name: 'Midnight', code: '#1D1D1F' },
-                        { name: 'Starlight', code: '#F2F2F7' },
-                        { name: 'Space Gray', code: '#8E8E93' },
-                        { name: 'Silver', code: '#F2F2F7' }
+                        { name: 'Starlight', code: '#F2F2F2' },
+                        { name: 'Space Gray', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' }
                     ],
                     storage: ['256GB', '512GB', '1TB', '2TB'],
                     partPrefix: 'MQKR3',
                     specs: '13.6-inch Liquid Retina display\nM3 chip with 8-core CPU and 10-core GPU\n8GB Unified Memory\n30W USB-C Power Adapter\nTwo Thunderbolt / USB 4 ports, MagSafe 3 charging',
                     priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
-                },
-                // iMac
-                'iMac 24" M3': {
-                    basePrice: 1299,
-                    colors: [
-                        { name: 'Blue', code: '#007AFF' },
-                        { name: 'Green', code: '#30D158' },
-                        { name: 'Pink', code: '#FF2D55' },
-                        { name: 'Silver', code: '#F2F2F7' },
-                        { name: 'Yellow', code: '#FFD60A' },
-                        { name: 'Orange', code: '#FF9500' },
-                        { name: 'Purple', code: '#BF5AF2' }
-                    ],
-                    storage: ['256GB', '512GB', '1TB', '2TB'],
-                    partPrefix: 'MQRN3',
-                    specs: '24-inch 4.5K Retina display\nM3 chip with 8-core CPU and 10-core GPU\n8GB Unified Memory\n1080p FaceTime HD camera\nSix-speaker sound system\nTwo Thunderbolt / USB 4 ports',
-                    priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
-                },
-                // Mac Studio
-                'Mac Studio M2 Ultra': {
-                    basePrice: 1999,
-                    colors: [
-                        { name: 'Space Gray', code: '#8E8E93' }
-                    ],
-                    storage: ['1TB', '2TB', '4TB', '8TB'],
-                    partPrefix: 'MJMV3',
-                    specs: 'M2 Ultra chip with 24-core CPU and 76-core GPU\n64GB Unified Memory\nTwo USB-C ports (up to 40Gb/s), two USB-A ports, HDMI, 10Gb Ethernet\nSix Thunderbolt 4 ports',
-                    priceMultiplier: { '1TB': 1, '2TB': 1.3, '4TB': 1.7, '8TB': 2.2 }
                 }
             },
             watch: {
@@ -1335,9 +1275,9 @@
                     basePrice: 399,
                     colors: [
                         { name: 'Midnight Aluminum', code: '#1D1D1F' },
-                        { name: 'Starlight Aluminum', code: '#F2F2F7' },
+                        { name: 'Starlight Aluminum', code: '#F2F2F2' },
                         { name: 'Silver Aluminum', code: '#E4E4E6' },
-                        { name: 'Red Aluminum', code: '#FF3B30' },
+                        { name: '(PRODUCT)RED Aluminum', code: '#FF3B30' },
                         { name: 'Pink Aluminum', code: '#FF2D55' }
                     ],
                     storage: ['GPS', 'GPS + Cellular'],
@@ -1349,7 +1289,7 @@
                     basePrice: 249,
                     colors: [
                         { name: 'Midnight Aluminum', code: '#1D1D1F' },
-                        { name: 'Starlight Aluminum', code: '#F2F2F7' },
+                        { name: 'Starlight Aluminum', code: '#F2F2F2' },
                         { name: 'Silver Aluminum', code: '#E4E4E6' }
                     ],
                     storage: ['GPS', 'GPS + Cellular'],
@@ -1359,20 +1299,20 @@
                 }
             },
             airpods: {
-                'AirPods Pro (2nd Generation)': {
+                'AirPods Pro (2nd generation)': {
                     basePrice: 249,
                     colors: [
-                        { name: 'White', code: '#F2F2F7' }
+                        { name: 'White', code: '#F2F2F2' }
                     ],
                     storage: ['Standard'],
                     partPrefix: 'MQD83',
                     specs: 'Active Noise Cancellation\nAdaptive Transparency\nPersonalized Spatial Audio\nMagSafe Charging Case (USB-C)\nUp to 6 hours of listening time\nConversation Awareness',
                     priceMultiplier: { 'Standard': 1 }
                 },
-                'AirPods (3rd Generation)': {
+                'AirPods (3rd generation)': {
                     basePrice: 169,
                     colors: [
-                        { name: 'White', code: '#F2F2F7' }
+                        { name: 'White', code: '#F2F2F2' }
                     ],
                     storage: ['Standard'],
                     partPrefix: 'MME73',
@@ -1382,10 +1322,10 @@
                 'AirPods Max': {
                     basePrice: 549,
                     colors: [
-                        { name: 'Space Gray', code: '#8E8E93' },
-                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Space Gray', code: '#3C3C3C' },
+                        { name: 'Silver', code: '#F2F2F2' },
                         { name: 'Sky Blue', code: '#5AC8FA' },
-                        { name: 'Green', code: '#30D158' },
+                        { name: 'Green', code: '#4CD964' },
                         { name: 'Pink', code: '#FF2D55' }
                     ],
                     storage: ['Standard'],
@@ -1398,43 +1338,23 @@
                 'Apple Pencil Pro': {
                     basePrice: 129,
                     colors: [
-                        { name: 'White', code: '#F2F2F7' }
+                        { name: 'White', code: '#F2F2F2' }
                     ],
                     storage: ['Standard'],
                     partPrefix: 'MX0F2',
                     specs: 'Pixel-perfect precision\nLow latency\nTilt and pressure sensitivity\nDouble-tap to switch tools\nSqueeze to bring up tool palette\nHaptic feedback\nFind My support',
                     priceMultiplier: { 'Standard': 1 }
                 },
-                'Apple Pencil (USB-C)': {
-                    basePrice: 79,
-                    colors: [
-                        { name: 'White', code: '#F2F2F7' }
-                    ],
-                    storage: ['Standard'],
-                    partPrefix: 'MU8F2',
-                    specs: 'Pixel-perfect precision\nLow latency\nTilt sensitivity\nUSB-C charging\nMagnetic attachment\nHover feature',
-                    priceMultiplier: { 'Standard': 1 }
-                },
                 'Magic Keyboard for iPad Pro': {
                     basePrice: 349,
                     colors: [
                         { name: 'Black', code: '#1D1D1F' },
-                        { name: 'White', code: '#F2F2F7' }
+                        { name: 'White', code: '#F2F2F2' }
                     ],
                     storage: ['Standard'],
                     partPrefix: 'MX0L2',
                     specs: 'Backlit keys\nScissor mechanism\nTrackpad with Multi-Touch gestures\nUSB-C pass-through charging\nFloating design\nProtective front and back covers',
                     priceMultiplier: { 'Standard': 1 }
-                },
-                'Apple TV 4K': {
-                    basePrice: 129,
-                    colors: [
-                        { name: 'Black', code: '#1D1D1F' }
-                    ],
-                    storage: ['64GB', '128GB'],
-                    partPrefix: 'MQDY3',
-                    specs: 'A15 Bionic chip\n4K Dolby Vision\nHDR10+\nDolby Atmos\nWi-Fi 6\nThread support\nSiri Remote with USB-C',
-                    priceMultiplier: { '64GB': 1, '128GB': 1.2 }
                 }
             }
         };
@@ -1571,24 +1491,21 @@
             modelSelect.innerHTML = '';
             
             if (appleProducts[category]) {
-                // Sort models by year (newest first)
+                // Get model names
                 const modelNames = Object.keys(appleProducts[category]);
                 
-                // Add models in a logical order
+                // Sort models by year (newest first) for better organization
+                modelNames.sort((a, b) => {
+                    const yearA = parseInt(a.match(/iPhone (\d+)/)?.[1] || 0);
+                    const yearB = parseInt(b.match(/iPhone (\d+)/)?.[1] || 0);
+                    return yearB - yearA; // Newest first
+                });
+                
+                // Add models
                 modelNames.forEach(model => {
                     const option = document.createElement('option');
                     option.value = model;
                     option.textContent = model;
-                    
-                    // Add year indicator for iPhones
-                    if (category === 'iphone') {
-                        const yearMatch = model.match(/iPhone (\d+)/);
-                        if (yearMatch) {
-                            const year = yearMatch[1];
-                            option.textContent = `${model} (${year})`;
-                        }
-                    }
-                    
                     modelSelect.appendChild(option);
                 });
                 
@@ -1601,10 +1518,10 @@
             }
         }
 
-        // Update color select dropdown
+        // Update color select dropdown with REAL Apple colors
         function updateColorSelect() {
             const category = elements.categorySelect.value;
-            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const model = elements.modelSelect.value;
             const colorSelect = elements.colorSelect;
             
             colorSelect.innerHTML = '';
@@ -1616,10 +1533,14 @@
                     const option = document.createElement('option');
                     option.value = color.name;
                     option.textContent = color.name;
-                    option.style.backgroundImage = `radial-gradient(circle at 8px center, ${color.code} 8px, transparent 9px)`;
-                    option.style.backgroundRepeat = 'no-repeat';
-                    option.style.backgroundPosition = '8px center';
-                    option.style.paddingLeft = '30px';
+                    
+                    // Create color preview in dropdown
+                    if (color.code) {
+                        option.style.backgroundImage = `radial-gradient(circle at 8px center, ${color.code} 8px, transparent 9px)`;
+                        option.style.backgroundRepeat = 'no-repeat';
+                        option.style.backgroundPosition = '8px center';
+                        option.style.paddingLeft = '30px';
+                    }
                     
                     colorSelect.appendChild(option);
                 });
@@ -1629,7 +1550,7 @@
         // Update storage select dropdown
         function updateStorageSelect() {
             const category = elements.categorySelect.value;
-            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const model = elements.modelSelect.value;
             const storageSelect = elements.storageSelect;
             
             storageSelect.innerHTML = '';
@@ -1649,7 +1570,7 @@
         // Update price display
         function updatePriceDisplay() {
             const category = elements.categorySelect.value;
-            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const model = elements.modelSelect.value;
             const storage = elements.storageSelect.value;
             const customPrice = parseFloat(document.getElementById('product-price-custom').value);
             
@@ -1676,7 +1597,7 @@
         // Update part number
         function updatePartNumber() {
             const category = elements.categorySelect.value;
-            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const model = elements.modelSelect.value;
             const color = elements.colorSelect.value;
             const storage = elements.storageSelect.value;
             
@@ -1693,7 +1614,7 @@
         // Update specifications
         function updateSpecs() {
             const category = elements.categorySelect.value;
-            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const model = elements.modelSelect.value;
             
             if (appleProducts[category] && appleProducts[category][model]) {
                 const specs = appleProducts[category][model].specs;
@@ -1704,15 +1625,34 @@
         // Get color code for part number
         function getColorCode(colorName) {
             const colorMap = {
-                'Space Black': 'LL', 'Black': 'LL', 'Graphite': 'LL', 'Midnight': 'LL', 'Black Titanium': 'LL',
-                'Titanium Gray': 'RM', 'Gray': 'RM', 'Natural Titanium': 'RM', 'Space Gray': 'RM',
-                'Deep Purple': 'PU', 'Purple': 'PU', 'Blue': 'BU', 'Pacific Blue': 'BU', 'Blue Titanium': 'BU',
-                'Sierra Blue': 'BU', 'Sky Blue': 'BU',
-                'Green': 'GR', 'Alpine Green': 'GR',
-                'Pink': 'PK', 'Red': 'RD',
-                'Gold': 'GD', 'Yellow': 'YL', 'Orange': 'OR',
-                'White': 'WT', 'Silver': 'WT', 'Starlight': 'WT', 'White Titanium': 'WT',
-                'Titanium Case': 'TI'
+                // iPhone 17 & 16 Series (Future predictions)
+                'Space Black': 'LL', 'Titanium Gray': 'RM', 'Deep Purple': 'PU', 'Gold': 'GD', 'Silver': 'WT',
+                
+                // iPhone 15 Series
+                'Black Titanium': 'LL', 'White Titanium': 'WT', 'Natural Titanium': 'NT', 'Blue Titanium': 'BU',
+                'Black': 'LL', 'Blue': 'BU', 'Green': 'GR', 'Pink': 'PK', 'Yellow': 'YL',
+                
+                // iPhone 14 Series
+                'Deep Purple': 'PU', 'Gold': 'GD', 'Silver': 'WT', 'Space Black': 'LL',
+                'Midnight': 'LL', 'Starlight': 'WT', 'Purple': 'PU', '(PRODUCT)RED': 'RD',
+                
+                // iPhone 13 Series
+                'Graphite': 'LL', 'Sierra Blue': 'BU',
+                
+                // iPhone 12 Series
+                'Pacific Blue': 'BU',
+                
+                // iPad Colors
+                'Space Gray': 'LL',
+                
+                // Mac Colors
+                'Space Black': 'LL', 'Midnight': 'LL',
+                
+                // Watch Colors
+                'Titanium Case': 'TI', 'Midnight Aluminum': 'LL', 'Starlight Aluminum': 'WT', 'Silver Aluminum': 'WT',
+                
+                // AirPods Colors
+                'White': 'WT', 'Sky Blue': 'BU'
             };
             
             return colorMap[colorName] || 'LL';
@@ -1843,23 +1783,11 @@
                 const row = document.createElement('tr');
                 
                 // Get color code for the dot
-                const category = 'iphone'; // Default to iPhone for color lookup
-                const modelProduct = appleProducts[category] && appleProducts[category][product.model];
+                const category = elements.categorySelect.value;
                 let colorCode = '#1D1D1F';
-                if (modelProduct) {
-                    const colorObj = modelProduct.colors.find(c => c.name === product.color);
+                if (appleProducts[category] && appleProducts[category][product.model]) {
+                    const colorObj = appleProducts[category][product.model].colors.find(c => c.name === product.color);
                     if (colorObj) colorCode = colorObj.code;
-                } else {
-                    // Try other categories
-                    for (const cat in appleProducts) {
-                        if (appleProducts[cat][product.model]) {
-                            const colorObj = appleProducts[cat][product.model].colors.find(c => c.name === product.color);
-                            if (colorObj) {
-                                colorCode = colorObj.code;
-                                break;
-                            }
-                        }
-                    }
                 }
                 
                 // Item cell with all details
@@ -1869,7 +1797,7 @@
                         <div class="item-title">${product.name}</div>
                         <div class="item-variant">
                             <span class="color-dot" style="background-color: ${colorCode};"></span>
-                            ${product.color} • ${product.storage}
+                            ${product.color}
                         </div>
                     </div>
                     ${product.specs ? `<div class="item-specs">${product.specs.replace(/\n/g, '<br>')}</div>` : ''}
@@ -1916,7 +1844,7 @@
         // Add product to receipt
         function addProduct() {
             const category = elements.categorySelect.value;
-            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const model = elements.modelSelect.value;
             const color = elements.colorSelect.value;
             const storage = elements.storageSelect.value;
             const specs = elements.specsTextarea.value;
@@ -1944,7 +1872,7 @@
                 return;
             }
             
-            // Create clean product name without duplication
+            // Create product name
             const productName = `${model} ${storage}`;
             
             // Add to products array
