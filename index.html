@@ -12,13 +12,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
         
         body {
             background-color: #f5f5f7;
             padding: 20px;
             color: #1d1d1f;
+            line-height: 1.5;
         }
         
         .container {
@@ -31,73 +32,86 @@
         
         .receipt-container {
             background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border-radius: 18px;
             overflow: hidden;
+            border: 1px solid #e5e5e7;
         }
         
         .receipt {
             width: 100%;
             max-width: 380px;
             margin: 0 auto;
-            padding: 25px;
+            padding: 28px;
             background-color: white;
             position: relative;
         }
         
         .apple-header {
             text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            margin-bottom: 24px;
+            padding-bottom: 18px;
             border-bottom: 1px solid #e5e5e7;
         }
         
         .apple-logo {
             color: #000;
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 26px;
+            font-weight: 700;
             letter-spacing: -0.5px;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
         .store-name {
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 5px;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1d1d1f;
         }
         
         .store-address {
-            font-size: 12px;
+            font-size: 13px;
             color: #6e6e73;
             line-height: 1.4;
+            max-width: 280px;
+            margin: 0 auto;
         }
         
         .receipt-details {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
+            background-color: #fbfbfd;
+            padding: 15px;
+            border-radius: 10px;
         }
         
         .detail-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 13px;
+            margin-bottom: 10px;
+            font-size: 13.5px;
         }
         
         .detail-label {
             font-weight: 500;
+            color: #424245;
         }
         
         .customer-info {
             background-color: #f5f5f7;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 24px;
         }
         
         .customer-name {
             font-weight: 600;
             font-size: 16px;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            color: #1d1d1f;
         }
         
         .payment-method {
@@ -108,108 +122,157 @@
         .items-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
         
         .items-table th {
             text-align: left;
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #e5e5e7;
             font-weight: 600;
             font-size: 14px;
+            color: #424245;
         }
         
         .items-table td {
-            padding: 12px 0;
+            padding: 14px 0;
             border-bottom: 1px solid #f5f5f7;
-            font-size: 13px;
+            font-size: 13.5px;
             vertical-align: top;
         }
         
-        .item-specs {
-            font-size: 12px;
+        .item-main-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .item-title {
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 14.5px;
+        }
+        
+        .item-variant {
             color: #6e6e73;
-            margin-top: 5px;
-            line-height: 1.4;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 2px;
+        }
+        
+        .color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .item-specs {
+            font-size: 12.5px;
+            color: #86868b;
+            margin-top: 8px;
+            line-height: 1.5;
         }
         
         .item-details {
-            font-size: 11px;
+            font-size: 11.5px;
             color: #86868b;
-            margin-top: 8px;
-            padding: 8px;
+            margin-top: 10px;
+            padding: 10px;
             background-color: #fbfbfd;
-            border-radius: 4px;
+            border-radius: 6px;
+            border-left: 3px solid #007AFF;
+        }
+        
+        .detail-line {
+            display: flex;
+            margin-bottom: 6px;
+        }
+        
+        .detail-label-small {
+            font-weight: 500;
+            min-width: 70px;
         }
         
         .totals {
-            margin-top: 20px;
-            border-top: 1px solid #e5e5e7;
-            padding-top: 15px;
+            margin-top: 24px;
+            border-top: 2px solid #e5e5e7;
+            padding-top: 18px;
         }
         
         .total-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 14px;
+            margin-bottom: 12px;
+            font-size: 14.5px;
         }
         
         .total-amount {
-            font-weight: 600;
-            font-size: 18px;
-            border-top: 1px solid #e5e5e7;
-            padding-top: 10px;
-            margin-top: 10px;
+            font-weight: 700;
+            font-size: 19px;
+            border-top: 2px solid #e5e5e7;
+            padding-top: 14px;
+            margin-top: 14px;
+            color: #1d1d1f;
         }
         
         .footer {
             text-align: center;
-            margin-top: 25px;
-            padding-top: 15px;
+            margin-top: 28px;
+            padding-top: 18px;
             border-top: 1px dashed #d2d2d7;
-            font-size: 12px;
+            font-size: 12.5px;
             color: #86868b;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         
         .controls {
             background-color: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
             height: fit-content;
             position: sticky;
             top: 20px;
+            border: 1px solid #e5e5e7;
         }
         
         .control-section {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
+            margin-bottom: 28px;
+            padding-bottom: 22px;
             border-bottom: 1px solid #f0f0f5;
+        }
+        
+        .control-section:last-child {
+            border-bottom: none;
         }
         
         .section-title {
             font-size: 18px;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             color: #1d1d1f;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         
         .section-title i {
             color: #007AFF;
+            width: 24px;
+            text-align: center;
         }
         
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         
         label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 500;
             font-size: 14px;
             color: #424245;
@@ -217,43 +280,51 @@
         
         input, select, textarea {
             width: 100%;
-            padding: 10px 12px;
+            padding: 12px 14px;
             border: 1px solid #d2d2d7;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: border-color 0.3s;
+            border-radius: 10px;
+            font-size: 14.5px;
+            transition: all 0.2s ease;
+            background-color: white;
         }
         
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #007AFF;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
         }
         
         textarea {
-            min-height: 80px;
+            min-height: 90px;
             resize: vertical;
+            line-height: 1.5;
         }
         
         .btn {
             background-color: #007AFF;
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
+            padding: 14px 24px;
+            border-radius: 10px;
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             width: 100%;
-            margin-top: 5px;
+            margin-top: 8px;
         }
         
         .btn:hover {
             background-color: #0056CC;
+            transform: translateY(-1px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
         }
         
         .btn-secondary {
@@ -274,73 +345,102 @@
         
         .item-controls {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 12px;
+            margin-top: 12px;
         }
         
         .item-controls .btn {
             flex: 1;
-            padding: 10px;
-            font-size: 14px;
+            padding: 12px;
+            font-size: 14.5px;
         }
         
         .products-list {
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
             border: 1px solid #e5e5e7;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 18px;
+            background-color: #fbfbfd;
         }
         
         .product-item {
-            padding: 10px;
-            border-bottom: 1px solid #f5f5f7;
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f5;
             font-size: 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background-color 0.2s;
+        }
+        
+        .product-item:hover {
+            background-color: #f5f5f7;
+            border-radius: 6px;
         }
         
         .product-item:last-child {
             border-bottom: none;
         }
         
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+        
         .product-name {
-            font-weight: 500;
-            max-width: 70%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+        
+        .product-details {
+            font-size: 12.5px;
+            color: #6e6e73;
+            display: flex;
+            gap: 12px;
         }
         
         .product-price {
-            font-weight: 600;
+            font-weight: 700;
             color: #1d1d1f;
+            font-size: 15px;
         }
         
         .remove-product {
             color: #FF3B30;
             cursor: pointer;
             font-size: 16px;
-            margin-left: 10px;
+            margin-left: 12px;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        .remove-product:hover {
+            background-color: rgba(255,59,48,0.1);
         }
         
         .page-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 36px;
             color: #1d1d1f;
         }
         
         .page-title h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
         }
         
         .page-title p {
-            font-size: 16px;
+            font-size: 17px;
             color: #86868b;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         @media print {
@@ -360,54 +460,124 @@
             .receipt {
                 box-shadow: none;
                 max-width: 100%;
+                padding: 20px;
             }
         }
         
         @media (max-width: 900px) {
             .container {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .controls {
+                position: static;
             }
         }
         
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        
-        .color-preview {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-            vertical-align: middle;
-            border: 1px solid #ddd;
+            gap: 12px;
         }
         
         .price-display {
             background-color: #f5f5f7;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 10px;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            margin-top: 12px;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
             color: #1d1d1f;
+            border: 1px solid #e5e5e7;
         }
         
         .auto-fill-notice {
+            font-size: 12.5px;
+            color: #86868b;
+            margin-top: 6px;
+            font-style: italic;
+        }
+        
+        .no-products {
+            text-align: center;
+            color: #86868b;
+            padding: 30px;
+            font-style: italic;
+        }
+        
+        .select-wrapper {
+            position: relative;
+        }
+        
+        .select-wrapper i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #86868b;
+            pointer-events: none;
+        }
+        
+        select {
+            appearance: none;
+            padding-right: 40px;
+        }
+        
+        .color-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+        }
+        
+        .color-sample {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        
+        .total-breakdown {
+            margin-top: 5px;
             font-size: 12px;
             color: #86868b;
-            margin-top: 5px;
-            font-style: italic;
+            text-align: right;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .btn-group .btn {
+            margin-top: 0;
+        }
+        
+        .receipt-meta {
+            font-size: 12px;
+            color: #86868b;
+            margin-top: 4px;
+        }
+        
+        .model-year {
+            background-color: #007AFF;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 6px;
         }
     </style>
 </head>
 <body>
     <div class="page-title">
         <h1><i class="fab fa-apple"></i> Apple Store Receipt Generator</h1>
-        <p>Create customizable Apple receipts with automatic product details, IMEI, serial numbers</p>
+        <p>Create professional Apple receipts with all iPhone models from 12 to 17</p>
     </div>
     
     <div class="container">
@@ -449,7 +619,7 @@
                         <tr>
                             <th>Item</th>
                             <th>Qty</th>
-                            <th style="text-align: right;">Unit Price</th>
+                            <th style="text-align: right;">Price</th>
                         </tr>
                     </thead>
                     <tbody id="items-list">
@@ -475,7 +645,7 @@
                 <div class="footer">
                     <p><strong>Thank you for shopping at Apple</strong></p>
                     <p>Keep this receipt for warranty and support purposes.</p>
-                    <p>For assistance, visit <a href="https://support.apple.com" style="color: #007AFF;">support.apple.com</a> or call 1-800-APL-CARE</p>
+                    <p>For assistance, visit <a href="https://support.apple.com" style="color: #007AFF; text-decoration: none;">support.apple.com</a> or call 1-800-APL-CARE</p>
                 </div>
             </div>
         </div>
@@ -531,36 +701,48 @@
                 
                 <div class="form-group">
                     <label for="product-category">Product Category</label>
-                    <select id="product-category">
-                        <option value="iphone">iPhone</option>
-                        <option value="ipad">iPad</option>
-                        <option value="mac">Mac</option>
-                        <option value="watch">Apple Watch</option>
-                        <option value="airpods">AirPods</option>
-                        <option value="other">Other</option>
-                    </select>
+                    <div class="select-wrapper">
+                        <select id="product-category">
+                            <option value="iphone">iPhone</option>
+                            <option value="ipad">iPad</option>
+                            <option value="mac">Mac</option>
+                            <option value="watch">Apple Watch</option>
+                            <option value="airpods">AirPods</option>
+                            <option value="other">Accessories</option>
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="product-model-select">Product Model</label>
-                    <select id="product-model-select">
-                        <!-- Options will be populated dynamically -->
-                    </select>
+                    <div class="select-wrapper">
+                        <select id="product-model-select">
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                     <div class="auto-fill-notice">Select a model to auto-fill details</div>
                 </div>
                 
                 <div class="form-group">
                     <label for="product-color">Color</label>
-                    <select id="product-color">
-                        <!-- Options will be populated dynamically -->
-                    </select>
+                    <div class="select-wrapper">
+                        <select id="product-color">
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="product-storage">Storage Capacity</label>
-                    <select id="product-storage">
-                        <!-- Options will be populated dynamically -->
-                    </select>
+                    <div class="select-wrapper">
+                        <select id="product-storage">
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </div>
                 
                 <div class="price-display" id="price-display">
@@ -606,7 +788,7 @@
                         </div>
                         <div>
                             <label for="product-price-custom">Custom Price (€) <small>(optional)</small></label>
-                            <input type="number" id="product-price-custom" placeholder="Leave empty for auto-price">
+                            <input type="number" id="product-price-custom" placeholder="Leave empty for auto-price" step="0.01">
                         </div>
                     </div>
                 </div>
@@ -615,23 +797,28 @@
                     <button class="btn" id="add-product-btn">
                         <i class="fas fa-plus-circle"></i> Add Product
                     </button>
-                    <button class="btn btn-secondary" id="clear-products-btn">
-                        <i class="fas fa-trash-alt"></i> Clear All
+                    <button class="btn btn-secondary" id="clear-form-btn">
+                        <i class="fas fa-eraser"></i> Clear Form
                     </button>
                 </div>
             </div>
             
             <div class="control-section">
-                <div class="section-title"><i class="fas fa-shopping-cart"></i> Products</div>
+                <div class="section-title"><i class="fas fa-shopping-cart"></i> Products in Receipt</div>
                 <div class="products-list" id="products-list">
-                    <!-- Products will be listed here -->
+                    <div class="no-products">No products added yet. Add your first product above.</div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary" id="clear-products-btn">
+                        <i class="fas fa-trash-alt"></i> Clear All Products
+                    </button>
                 </div>
             </div>
             
             <div class="control-section">
                 <div class="section-title"><i class="fas fa-file-export"></i> Export</div>
                 <button class="btn" id="update-receipt-btn">
-                    <i class="fas fa-sync-alt"></i> Update Receipt
+                    <i class="fas fa-sync-alt"></i> Update Receipt Preview
                 </button>
                 <button class="btn" id="print-receipt-btn" style="margin-top: 10px;">
                     <i class="fas fa-print"></i> Print Receipt
@@ -644,9 +831,10 @@
     </div>
 
     <script>
-        // Apple Products Database
+        // COMPLETE Apple Products Database - ALL MODELS iPhone 12 to 17
         const appleProducts = {
             iphone: {
+                // iPhone 17 Series
                 'iPhone 17 Pro Max': {
                     basePrice: 1299,
                     colors: [
@@ -691,6 +879,23 @@
                     specs: '6.3-inch Super Retina XDR display\nA19 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
+                'iPhone 17 Plus': {
+                    basePrice: 999,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Green', code: '#34C759' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Yellow', code: '#FFCC00' },
+                        { name: 'White', code: '#F2F2F7' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MTVN3',
+                    specs: '6.9-inch Super Retina XDR display\nA19 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                
+                // iPhone 16 Series
                 'iPhone 16 Pro Max': {
                     basePrice: 1199,
                     colors: [
@@ -731,6 +936,22 @@
                     specs: '6.1-inch Super Retina XDR display\nA18 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
+                'iPhone 16 Plus': {
+                    basePrice: 899,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Green', code: '#34C759' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Yellow', code: '#FFCC00' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MU5U3',
+                    specs: '6.7-inch Super Retina XDR display\nA18 chip with 6-core CPU\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                
+                // iPhone 15 Series
                 'iPhone 15 Pro Max': {
                     basePrice: 1099,
                     colors: [
@@ -771,6 +992,22 @@
                     specs: '6.1-inch Super Retina XDR display\nA16 Bionic chip\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
+                'iPhone 15 Plus': {
+                    basePrice: 799,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Green', code: '#30D158' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Yellow', code: '#FFD60A' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MU2P3',
+                    specs: '6.7-inch Super Retina XDR display\nA16 Bionic chip\n48MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\nUSB-C connector',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                
+                // iPhone 14 Series
                 'iPhone 14 Pro Max': {
                     basePrice: 1099,
                     colors: [
@@ -811,6 +1048,22 @@
                     specs: '6.1-inch Super Retina XDR display\nA15 Bionic chip\n12MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
+                'iPhone 14 Plus': {
+                    basePrice: 799,
+                    colors: [
+                        { name: 'Midnight', code: '#1D1D1F' },
+                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Blue', code: '#0A84FF' },
+                        { name: 'Purple', code: '#BF5AF2' },
+                        { name: 'Red', code: '#FF3B30' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MPV23',
+                    specs: '6.7-inch Super Retina XDR display\nA15 Bionic chip\n12MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                
+                // iPhone 13 Series
                 'iPhone 13 Pro Max': {
                     basePrice: 1099,
                     colors: [
@@ -851,6 +1104,22 @@
                     specs: '6.1-inch Super Retina XDR display\nA15 Bionic chip\n12MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
                     priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
                 },
+                'iPhone 13 mini': {
+                    basePrice: 499,
+                    colors: [
+                        { name: 'Midnight', code: '#1D1D1F' },
+                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Blue', code: '#0A84FF' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Red', code: '#FF3B30' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MLK03',
+                    specs: '5.4-inch Super Retina XDR display\nA15 Bionic chip\n12MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.4 }
+                },
+                
+                // iPhone 12 Series
                 'iPhone 12 Pro Max': {
                     basePrice: 1099,
                     colors: [
@@ -890,9 +1159,24 @@
                     partPrefix: 'MGJ53',
                     specs: '6.1-inch Super Retina XDR display\nA14 Bionic chip\n12MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
                     priceMultiplier: { '64GB': 1, '128GB': 1.1, '256GB': 1.3 }
+                },
+                'iPhone 12 mini': {
+                    basePrice: 499,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'White', code: '#F2F2F7' },
+                        { name: 'Green', code: '#30D158' },
+                        { name: 'Blue', code: '#0A84FF' },
+                        { name: 'Red', code: '#FF3B30' }
+                    ],
+                    storage: ['64GB', '128GB', '256GB'],
+                    partPrefix: 'MG9F3',
+                    specs: '5.4-inch Super Retina XDR display\nA14 Bionic chip\n12MP Main + 12MP Ultra Wide camera\nCeramic Shield front\nAerospace-grade aluminum\n5G capable',
+                    priceMultiplier: { '64GB': 1, '128GB': 1.1, '256GB': 1.3 }
                 }
             },
             ipad: {
+                // iPad Pro Series
                 'iPad Pro 13" M4': {
                     basePrice: 1299,
                     colors: [
@@ -903,9 +1187,60 @@
                     partPrefix: 'MXAK2',
                     specs: '13-inch Liquid Retina XDR display\nM4 chip with 10-core CPU\n12MP front camera with Center Stage\nThunderbolt / USB 4 port\nFace ID\nSupports Apple Pencil Pro',
                     priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
+                },
+                'iPad Pro 11" M4': {
+                    basePrice: 999,
+                    colors: [
+                        { name: 'Space Gray', code: '#1D1D1F' },
+                        { name: 'Silver', code: '#F2F2F7' }
+                    ],
+                    storage: ['256GB', '512GB', '1TB', '2TB'],
+                    partPrefix: 'MXAJ2',
+                    specs: '11-inch Liquid Retina display\nM4 chip with 10-core CPU\n12MP front camera with Center Stage\nThunderbolt / USB 4 port\nFace ID\nSupports Apple Pencil Pro',
+                    priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
+                },
+                'iPad Air M2': {
+                    basePrice: 599,
+                    colors: [
+                        { name: 'Space Gray', code: '#1D1D1F' },
+                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Purple', code: '#BF5AF2' }
+                    ],
+                    storage: ['128GB', '256GB', '512GB'],
+                    partPrefix: 'MYFQ2',
+                    specs: '10.9-inch Liquid Retina display\nM2 chip with 8-core CPU\n12MP front camera with Center Stage\nUSB-C connector\nTouch ID\nSupports Apple Pencil (2nd gen)',
+                    priceMultiplier: { '128GB': 1, '256GB': 1.2, '512GB': 1.5 }
+                },
+                'iPad 10th Gen': {
+                    basePrice: 449,
+                    colors: [
+                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Yellow', code: '#FFCC00' }
+                    ],
+                    storage: ['64GB', '256GB'],
+                    partPrefix: 'MPQ03',
+                    specs: '10.9-inch Liquid Retina display\nA14 Bionic chip\n12MP front camera with Center Stage\nUSB-C connector\nTouch ID in top button\nSupports Apple Pencil (1st gen)',
+                    priceMultiplier: { '64GB': 1, '256GB': 1.3 }
+                },
+                'iPad mini 6': {
+                    basePrice: 499,
+                    colors: [
+                        { name: 'Space Gray', code: '#1D1D1F' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Purple', code: '#BF5AF2' },
+                        { name: 'Starlight', code: '#F2F2F7' }
+                    ],
+                    storage: ['64GB', '256GB'],
+                    partPrefix: 'MK7R3',
+                    specs: '8.3-inch Liquid Retina display\nA15 Bionic chip\n12MP front camera with Center Stage\nUSB-C connector\nTouch ID in top button\nSupports Apple Pencil (2nd gen)',
+                    priceMultiplier: { '64GB': 1, '256GB': 1.3 }
                 }
             },
             mac: {
+                // MacBook Pro Series
                 'MacBook Pro 16" M3 Max': {
                     basePrice: 3499,
                     colors: [
@@ -916,9 +1251,76 @@
                     partPrefix: 'MRX13',
                     specs: '16.2-inch Liquid Retina XDR display\nM3 Max chip with 16-core CPU and 40-core GPU\n48GB Unified Memory\n140W USB-C Power Adapter\nThree Thunderbolt 4 ports, HDMI port, SDXC card slot',
                     priceMultiplier: { '1TB': 1, '2TB': 1.2, '4TB': 1.5, '8TB': 2.0 }
+                },
+                'MacBook Pro 14" M3 Pro': {
+                    basePrice: 1999,
+                    colors: [
+                        { name: 'Space Black', code: '#1D1D1F' },
+                        { name: 'Silver', code: '#F2F2F7' }
+                    ],
+                    storage: ['512GB', '1TB', '2TB', '4TB'],
+                    partPrefix: 'MRX03',
+                    specs: '14.2-inch Liquid Retina XDR display\nM3 Pro chip with 12-core CPU and 18-core GPU\n18GB Unified Memory\n70W USB-C Power Adapter\nThree Thunderbolt 4 ports, HDMI port, SDXC card slot',
+                    priceMultiplier: { '512GB': 1, '1TB': 1.2, '2TB': 1.5, '4TB': 2.0 }
+                },
+                // MacBook Air Series
+                'MacBook Air 15" M3': {
+                    basePrice: 1299,
+                    colors: [
+                        { name: 'Midnight', code: '#1D1D1F' },
+                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Space Gray', code: '#8E8E93' },
+                        { name: 'Silver', code: '#F2F2F7' }
+                    ],
+                    storage: ['256GB', '512GB', '1TB', '2TB'],
+                    partPrefix: 'MQKW3',
+                    specs: '15.3-inch Liquid Retina display\nM3 chip with 8-core CPU and 10-core GPU\n8GB Unified Memory\n30W USB-C Power Adapter\nTwo Thunderbolt / USB 4 ports, MagSafe 3 charging',
+                    priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
+                },
+                'MacBook Air 13" M3': {
+                    basePrice: 1099,
+                    colors: [
+                        { name: 'Midnight', code: '#1D1D1F' },
+                        { name: 'Starlight', code: '#F2F2F7' },
+                        { name: 'Space Gray', code: '#8E8E93' },
+                        { name: 'Silver', code: '#F2F2F7' }
+                    ],
+                    storage: ['256GB', '512GB', '1TB', '2TB'],
+                    partPrefix: 'MQKR3',
+                    specs: '13.6-inch Liquid Retina display\nM3 chip with 8-core CPU and 10-core GPU\n8GB Unified Memory\n30W USB-C Power Adapter\nTwo Thunderbolt / USB 4 ports, MagSafe 3 charging',
+                    priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
+                },
+                // iMac
+                'iMac 24" M3': {
+                    basePrice: 1299,
+                    colors: [
+                        { name: 'Blue', code: '#007AFF' },
+                        { name: 'Green', code: '#30D158' },
+                        { name: 'Pink', code: '#FF2D55' },
+                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Yellow', code: '#FFD60A' },
+                        { name: 'Orange', code: '#FF9500' },
+                        { name: 'Purple', code: '#BF5AF2' }
+                    ],
+                    storage: ['256GB', '512GB', '1TB', '2TB'],
+                    partPrefix: 'MQRN3',
+                    specs: '24-inch 4.5K Retina display\nM3 chip with 8-core CPU and 10-core GPU\n8GB Unified Memory\n1080p FaceTime HD camera\nSix-speaker sound system\nTwo Thunderbolt / USB 4 ports',
+                    priceMultiplier: { '256GB': 1, '512GB': 1.2, '1TB': 1.5, '2TB': 2.0 }
+                },
+                // Mac Studio
+                'Mac Studio M2 Ultra': {
+                    basePrice: 1999,
+                    colors: [
+                        { name: 'Space Gray', code: '#8E8E93' }
+                    ],
+                    storage: ['1TB', '2TB', '4TB', '8TB'],
+                    partPrefix: 'MJMV3',
+                    specs: 'M2 Ultra chip with 24-core CPU and 76-core GPU\n64GB Unified Memory\nTwo USB-C ports (up to 40Gb/s), two USB-A ports, HDMI, 10Gb Ethernet\nSix Thunderbolt 4 ports',
+                    priceMultiplier: { '1TB': 1, '2TB': 1.3, '4TB': 1.7, '8TB': 2.2 }
                 }
             },
             watch: {
+                // Apple Watch Series
                 'Apple Watch Ultra 2': {
                     basePrice: 799,
                     colors: [
@@ -928,6 +1330,32 @@
                     partPrefix: 'MTE03',
                     specs: '49mm Titanium case\nAlways-On Retina display\nDual-frequency GPS\nDepth gauge with water temperature sensor\nAction button\nUp to 36 hours battery life',
                     priceMultiplier: { 'GPS + Cellular': 1 }
+                },
+                'Apple Watch Series 9': {
+                    basePrice: 399,
+                    colors: [
+                        { name: 'Midnight Aluminum', code: '#1D1D1F' },
+                        { name: 'Starlight Aluminum', code: '#F2F2F7' },
+                        { name: 'Silver Aluminum', code: '#E4E4E6' },
+                        { name: 'Red Aluminum', code: '#FF3B30' },
+                        { name: 'Pink Aluminum', code: '#FF2D55' }
+                    ],
+                    storage: ['GPS', 'GPS + Cellular'],
+                    partPrefix: 'MT9X3',
+                    specs: '45mm or 41mm case\nAlways-On Retina display\nS9 SiP with 64-bit dual-core processor\nBlood Oxygen app\nECG app\nUp to 18 hours battery life',
+                    priceMultiplier: { 'GPS': 1, 'GPS + Cellular': 1.2 }
+                },
+                'Apple Watch SE': {
+                    basePrice: 249,
+                    colors: [
+                        { name: 'Midnight Aluminum', code: '#1D1D1F' },
+                        { name: 'Starlight Aluminum', code: '#F2F2F7' },
+                        { name: 'Silver Aluminum', code: '#E4E4E6' }
+                    ],
+                    storage: ['GPS', 'GPS + Cellular'],
+                    partPrefix: 'MP8X3',
+                    specs: '44mm or 40mm case\nRetina display\nS8 SiP with dual-core processor\nFall detection\nEmergency SOS\nUp to 18 hours battery life',
+                    priceMultiplier: { 'GPS': 1, 'GPS + Cellular': 1.2 }
                 }
             },
             airpods: {
@@ -938,95 +1366,233 @@
                     ],
                     storage: ['Standard'],
                     partPrefix: 'MQD83',
-                    specs: 'Active Noise Cancellation\nAdaptive Transparency\nPersonalized Spatial Audio\nMagSafe Charging Case\nUp to 6 hours of listening time',
+                    specs: 'Active Noise Cancellation\nAdaptive Transparency\nPersonalized Spatial Audio\nMagSafe Charging Case (USB-C)\nUp to 6 hours of listening time\nConversation Awareness',
                     priceMultiplier: { 'Standard': 1 }
+                },
+                'AirPods (3rd Generation)': {
+                    basePrice: 169,
+                    colors: [
+                        { name: 'White', code: '#F2F2F7' }
+                    ],
+                    storage: ['Standard'],
+                    partPrefix: 'MME73',
+                    specs: 'Personalized Spatial Audio\nAdaptive EQ\nSweat and water resistant\nMagSafe Charging Case\nUp to 6 hours of listening time\nQuick access to Siri',
+                    priceMultiplier: { 'Standard': 1 }
+                },
+                'AirPods Max': {
+                    basePrice: 549,
+                    colors: [
+                        { name: 'Space Gray', code: '#8E8E93' },
+                        { name: 'Silver', code: '#F2F2F7' },
+                        { name: 'Sky Blue', code: '#5AC8FA' },
+                        { name: 'Green', code: '#30D158' },
+                        { name: 'Pink', code: '#FF2D55' }
+                    ],
+                    storage: ['Standard'],
+                    partPrefix: 'MGYH3',
+                    specs: 'Over-ear design\nActive Noise Cancellation\nTransparency mode\nPersonalized Spatial Audio\nDigital Crown for volume control\nUp to 20 hours of battery life',
+                    priceMultiplier: { 'Standard': 1 }
+                }
+            },
+            other: {
+                'Apple Pencil Pro': {
+                    basePrice: 129,
+                    colors: [
+                        { name: 'White', code: '#F2F2F7' }
+                    ],
+                    storage: ['Standard'],
+                    partPrefix: 'MX0F2',
+                    specs: 'Pixel-perfect precision\nLow latency\nTilt and pressure sensitivity\nDouble-tap to switch tools\nSqueeze to bring up tool palette\nHaptic feedback\nFind My support',
+                    priceMultiplier: { 'Standard': 1 }
+                },
+                'Apple Pencil (USB-C)': {
+                    basePrice: 79,
+                    colors: [
+                        { name: 'White', code: '#F2F2F7' }
+                    ],
+                    storage: ['Standard'],
+                    partPrefix: 'MU8F2',
+                    specs: 'Pixel-perfect precision\nLow latency\nTilt sensitivity\nUSB-C charging\nMagnetic attachment\nHover feature',
+                    priceMultiplier: { 'Standard': 1 }
+                },
+                'Magic Keyboard for iPad Pro': {
+                    basePrice: 349,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' },
+                        { name: 'White', code: '#F2F2F7' }
+                    ],
+                    storage: ['Standard'],
+                    partPrefix: 'MX0L2',
+                    specs: 'Backlit keys\nScissor mechanism\nTrackpad with Multi-Touch gestures\nUSB-C pass-through charging\nFloating design\nProtective front and back covers',
+                    priceMultiplier: { 'Standard': 1 }
+                },
+                'Apple TV 4K': {
+                    basePrice: 129,
+                    colors: [
+                        { name: 'Black', code: '#1D1D1F' }
+                    ],
+                    storage: ['64GB', '128GB'],
+                    partPrefix: 'MQDY3',
+                    specs: 'A15 Bionic chip\n4K Dolby Vision\nHDR10+\nDolby Atmos\nWi-Fi 6\nThread support\nSiri Remote with USB-C',
+                    priceMultiplier: { '64GB': 1, '128GB': 1.2 }
                 }
             }
         };
 
-        // Sample products data
-        let products = [
-            {
-                name: "iPhone 15 Pro Max",
-                specs: "6.7-inch Super Retina XDR display\nA17 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nTitanium design\nUSB-C connector\n5G capable",
-                model: "iPhone 15 Pro Max",
-                color: "Natural Titanium",
-                storage: "256GB",
-                partNumber: "MU2R3LL/A",
-                serial: "C02XL0WYMD6R",
-                imei1: "35 123456 789012 3",
-                imei2: "35 123456 789012 4",
-                qty: 1,
-                price: 1199.00
-            }
-        ];
-        
-        // Initialize receipt
+        // Initialize with a sample product
+        let products = [];
+
+        // DOM Elements
+        const elements = {
+            receipt: document.getElementById('receipt'),
+            itemsList: document.getElementById('items-list'),
+            productsList: document.getElementById('products-list'),
+            priceDisplay: document.getElementById('price-display'),
+            modelSelect: document.getElementById('product-model-select'),
+            colorSelect: document.getElementById('product-color'),
+            storageSelect: document.getElementById('product-storage'),
+            categorySelect: document.getElementById('product-category'),
+            partNumberInput: document.getElementById('product-part'),
+            specsTextarea: document.getElementById('product-specs-custom')
+        };
+
+        // Initialize application
         document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+        });
+
+        // Initialize the application
+        function initializeApp() {
+            // Set current date and time
+            const now = new Date();
+            const formattedDate = now.toISOString().split('T')[0];
+            const formattedTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            
+            document.getElementById('receipt-date-input').value = formattedDate;
+            document.getElementById('receipt-time-input').value = formattedTime;
+            
+            // Generate random receipt number
+            document.getElementById('receipt-number-input').value = generateReceiptNumber();
+            
+            // Generate random serial number placeholder
+            document.getElementById('product-serial').placeholder = generateSerialNumber();
+            
+            // Populate initial model select
             populateModelSelect();
+            
+            // Update UI
             updatePriceDisplay();
             updateReceipt();
             updateProductsList();
             
-            // Set current date and time as default
-            const now = new Date();
-            document.getElementById('receipt-date-input').valueAsDate = now;
-            document.getElementById('receipt-time-input').value = 
-                `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            // Add a sample product
+            addSampleProduct();
+        }
+
+        // Add a sample product for demonstration
+        function addSampleProduct() {
+            const sampleProduct = {
+                name: "iPhone 15 Pro 256GB",
+                specs: "6.1-inch Super Retina XDR display\nA17 Pro chip with 6-core CPU\n48MP Main + 12MP Ultra Wide + 12MP Telephoto\nTitanium design\nUSB-C connector\n5G capable",
+                model: "iPhone 15 Pro",
+                color: "Natural Titanium",
+                storage: "256GB",
+                partNumber: "MU2Q3LL/A",
+                serial: "C02XL0WYMD6R",
+                imei1: "35 123456 789012 3",
+                imei2: "35 123456 789012 4",
+                qty: 1,
+                price: 1099
+            };
             
-            // Add event listeners
+            products.push(sampleProduct);
+            updateReceipt();
+            updateProductsList();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Button events
             document.getElementById('update-receipt-btn').addEventListener('click', updateReceipt);
             document.getElementById('add-product-btn').addEventListener('click', addProduct);
             document.getElementById('clear-products-btn').addEventListener('click', clearProducts);
+            document.getElementById('clear-form-btn').addEventListener('click', clearProductForm);
             document.getElementById('print-receipt-btn').addEventListener('click', printReceipt);
             document.getElementById('export-pdf-btn').addEventListener('click', exportToPDF);
             
-            // Category change
-            document.getElementById('product-category').addEventListener('change', function() {
-                populateModelSelect();
-                updatePriceDisplay();
+            // Auto-update on input changes
+            const autoUpdateInputs = [
+                'store-name-input', 'store-address-input', 'receipt-date-input',
+                'receipt-time-input', 'receipt-number-input', 'customer-name-input',
+                'payment-method-input', 'vat-rate-input'
+            ];
+            
+            autoUpdateInputs.forEach(id => {
+                document.getElementById(id).addEventListener('input', updateReceipt);
             });
             
-            // Model change
-            document.getElementById('product-model-select').addEventListener('change', function() {
-                updateColorSelect();
-                updateStorageSelect();
-                updatePriceDisplay();
-                updatePartNumber();
-                updateSpecs();
-            });
+            // Product form changes
+            elements.categorySelect.addEventListener('change', handleCategoryChange);
+            elements.modelSelect.addEventListener('change', handleModelChange);
+            elements.colorSelect.addEventListener('change', updatePriceDisplay);
+            elements.storageSelect.addEventListener('change', handleStorageChange);
             
-            // Color change
-            document.getElementById('product-color').addEventListener('change', updatePriceDisplay);
-            
-            // Storage change
-            document.getElementById('product-storage').addEventListener('change', function() {
-                updatePriceDisplay();
-                updatePartNumber();
-            });
-            
-            // Auto-update receipt when inputs change
-            const inputs = document.querySelectorAll('.controls input, .controls textarea, .controls select');
-            inputs.forEach(input => {
-                input.addEventListener('input', updateReceipt);
-            });
-        });
-        
-        // Populate model select based on category
+            // Custom price input
+            document.getElementById('product-price-custom').addEventListener('input', updatePriceDisplay);
+        }
+
+        // Handle category change
+        function handleCategoryChange() {
+            populateModelSelect();
+            updatePriceDisplay();
+        }
+
+        // Handle model change
+        function handleModelChange() {
+            updateColorSelect();
+            updateStorageSelect();
+            updatePriceDisplay();
+            updatePartNumber();
+            updateSpecs();
+        }
+
+        // Handle storage change
+        function handleStorageChange() {
+            updatePriceDisplay();
+            updatePartNumber();
+        }
+
+        // Populate model select dropdown
         function populateModelSelect() {
-            const category = document.getElementById('product-category').value;
-            const modelSelect = document.getElementById('product-model-select');
+            const category = elements.categorySelect.value;
+            const modelSelect = elements.modelSelect;
+            
             modelSelect.innerHTML = '';
             
             if (appleProducts[category]) {
-                Object.keys(appleProducts[category]).forEach(model => {
+                // Sort models by year (newest first)
+                const modelNames = Object.keys(appleProducts[category]);
+                
+                // Add models in a logical order
+                modelNames.forEach(model => {
                     const option = document.createElement('option');
                     option.value = model;
                     option.textContent = model;
+                    
+                    // Add year indicator for iPhones
+                    if (category === 'iphone') {
+                        const yearMatch = model.match(/iPhone (\d+)/);
+                        if (yearMatch) {
+                            const year = yearMatch[1];
+                            option.textContent = `${model} (${year})`;
+                        }
+                    }
+                    
                     modelSelect.appendChild(option);
                 });
                 
-                // Update color and storage selects
+                // Update dependent selects
                 updateColorSelect();
                 updateStorageSelect();
                 updatePriceDisplay();
@@ -1034,12 +1600,13 @@
                 updateSpecs();
             }
         }
-        
-        // Update color select based on selected model
+
+        // Update color select dropdown
         function updateColorSelect() {
-            const category = document.getElementById('product-category').value;
-            const model = document.getElementById('product-model-select').value;
-            const colorSelect = document.getElementById('product-color');
+            const category = elements.categorySelect.value;
+            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const colorSelect = elements.colorSelect;
+            
             colorSelect.innerHTML = '';
             
             if (appleProducts[category] && appleProducts[category][model]) {
@@ -1049,26 +1616,22 @@
                     const option = document.createElement('option');
                     option.value = color.name;
                     option.textContent = color.name;
-                    option.dataset.colorCode = color.code;
-                    colorSelect.appendChild(option);
-                });
-                
-                // Update color preview in dropdown
-                const options = colorSelect.querySelectorAll('option');
-                options.forEach(option => {
-                    const colorCode = option.dataset.colorCode;
-                    option.style.backgroundImage = `radial-gradient(circle at 10px center, ${colorCode} 10px, transparent 11px)`;
+                    option.style.backgroundImage = `radial-gradient(circle at 8px center, ${color.code} 8px, transparent 9px)`;
                     option.style.backgroundRepeat = 'no-repeat';
+                    option.style.backgroundPosition = '8px center';
                     option.style.paddingLeft = '30px';
+                    
+                    colorSelect.appendChild(option);
                 });
             }
         }
-        
-        // Update storage select based on selected model
+
+        // Update storage select dropdown
         function updateStorageSelect() {
-            const category = document.getElementById('product-category').value;
-            const model = document.getElementById('product-model-select').value;
-            const storageSelect = document.getElementById('product-storage');
+            const category = elements.categorySelect.value;
+            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const storageSelect = elements.storageSelect;
+            
             storageSelect.innerHTML = '';
             
             if (appleProducts[category] && appleProducts[category][model]) {
@@ -1082,113 +1645,120 @@
                 });
             }
         }
-        
-        // Update part number based on selections
+
+        // Update price display
+        function updatePriceDisplay() {
+            const category = elements.categorySelect.value;
+            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const storage = elements.storageSelect.value;
+            const customPrice = parseFloat(document.getElementById('product-price-custom').value);
+            
+            let price = customPrice;
+            
+            if (!price || price <= 0 || isNaN(price)) {
+                if (appleProducts[category] && appleProducts[category][model]) {
+                    const product = appleProducts[category][model];
+                    const priceMultiplier = product.priceMultiplier[storage] || 1;
+                    price = product.basePrice * priceMultiplier;
+                } else {
+                    price = 0;
+                }
+            }
+            
+            elements.priceDisplay.innerHTML = `Price: <strong>€ ${price.toFixed(2)}</strong>`;
+            
+            // Update custom price placeholder
+            if (!customPrice || customPrice <= 0 || isNaN(customPrice)) {
+                document.getElementById('product-price-custom').placeholder = `Auto: € ${price.toFixed(2)}`;
+            }
+        }
+
+        // Update part number
         function updatePartNumber() {
-            const category = document.getElementById('product-category').value;
-            const model = document.getElementById('product-model-select').value;
-            const color = document.getElementById('product-color').value;
-            const storage = document.getElementById('product-storage').value;
+            const category = elements.categorySelect.value;
+            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const color = elements.colorSelect.value;
+            const storage = elements.storageSelect.value;
             
             if (appleProducts[category] && appleProducts[category][model]) {
                 const product = appleProducts[category][model];
-                const colorCode = getColorCode(category, model, color);
-                const storageCode = getStorageCode(category, model, storage);
+                const colorCode = getColorCode(color);
+                const storageCode = getStorageCode(storage);
                 
-                // Generate a realistic part number
                 const partNumber = `${product.partPrefix}${colorCode}${storageCode}/A`;
-                document.getElementById('product-part').value = partNumber;
+                elements.partNumberInput.value = partNumber;
             }
         }
-        
-        // Update specifications textarea
+
+        // Update specifications
         function updateSpecs() {
-            const category = document.getElementById('product-category').value;
-            const model = document.getElementById('product-model-select').value;
+            const category = elements.categorySelect.value;
+            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
             
             if (appleProducts[category] && appleProducts[category][model]) {
                 const specs = appleProducts[category][model].specs;
-                document.getElementById('product-specs-custom').value = specs;
+                elements.specsTextarea.value = specs;
             }
         }
-        
-        // Calculate and display price
-        function updatePriceDisplay() {
-            const category = document.getElementById('product-category').value;
-            const model = document.getElementById('product-model-select').value;
-            const storage = document.getElementById('product-storage').value;
-            
-            if (appleProducts[category] && appleProducts[category][model]) {
-                const product = appleProducts[category][model];
-                const priceMultiplier = product.priceMultiplier[storage] || 1;
-                const calculatedPrice = product.basePrice * priceMultiplier;
-                
-                document.getElementById('price-display').innerHTML = 
-                    `Price: <strong>€ ${calculatedPrice.toFixed(2)}</strong>`;
-                
-                // Update custom price placeholder
-                document.getElementById('product-price-custom').placeholder = 
-                    `Auto: € ${calculatedPrice.toFixed(2)}`;
-            }
-        }
-        
+
         // Get color code for part number
-        function getColorCode(category, model, colorName) {
-            // Simplified color coding
+        function getColorCode(colorName) {
             const colorMap = {
-                'Space Black': 'LL',
-                'Black': 'LL',
-                'Graphite': 'LL',
-                'Midnight': 'LL',
-                'Titanium Gray': 'RM',
-                'Gray': 'RM',
-                'Natural Titanium': 'RM',
-                'Space Gray': 'RM',
-                'Deep Purple': 'PU',
-                'Purple': 'PU',
-                'Blue': 'BU',
-                'Pacific Blue': 'BU',
-                'Sierra Blue': 'BU',
-                'Blue Titanium': 'BU',
-                'Green': 'GR',
-                'Alpine Green': 'GR',
-                'Pink': 'PK',
-                'Red': 'RD',
-                'Gold': 'GD',
-                'Yellow': 'YL',
-                'White': 'WT',
-                'Silver': 'WT',
-                'Starlight': 'WT',
-                'White Titanium': 'WT'
+                'Space Black': 'LL', 'Black': 'LL', 'Graphite': 'LL', 'Midnight': 'LL', 'Black Titanium': 'LL',
+                'Titanium Gray': 'RM', 'Gray': 'RM', 'Natural Titanium': 'RM', 'Space Gray': 'RM',
+                'Deep Purple': 'PU', 'Purple': 'PU', 'Blue': 'BU', 'Pacific Blue': 'BU', 'Blue Titanium': 'BU',
+                'Sierra Blue': 'BU', 'Sky Blue': 'BU',
+                'Green': 'GR', 'Alpine Green': 'GR',
+                'Pink': 'PK', 'Red': 'RD',
+                'Gold': 'GD', 'Yellow': 'YL', 'Orange': 'OR',
+                'White': 'WT', 'Silver': 'WT', 'Starlight': 'WT', 'White Titanium': 'WT',
+                'Titanium Case': 'TI'
             };
             
             return colorMap[colorName] || 'LL';
         }
-        
+
         // Get storage code for part number
-        function getStorageCode(category, model, storage) {
-            // Simplified storage coding
+        function getStorageCode(storage) {
             const storageMap = {
-                '64GB': 'A',
-                '128GB': 'B',
-                '256GB': 'C',
-                '512GB': 'D',
-                '1TB': 'E',
-                '2TB': 'F',
-                '4TB': 'G',
-                '8TB': 'H',
-                'Standard': 'A',
-                'GPS + Cellular': 'B'
+                '64GB': 'A', '128GB': 'B', '256GB': 'C', '512GB': 'D',
+                '1TB': 'E', '2TB': 'F', '4TB': 'G', '8TB': 'H',
+                'Standard': 'A', 'GPS + Cellular': 'B', 'GPS': 'A'
             };
             
             return storageMap[storage] || 'A';
         }
-        
+
+        // Generate a random receipt number
+        function generateReceiptNumber() {
+            return Math.floor(100000000 + Math.random() * 900000000).toString();
+        }
+
+        // Generate a random serial number
+        function generateSerialNumber() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+            let serial = '';
+            for (let i = 0; i < 12; i++) {
+                serial += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return serial;
+        }
+
+        // Generate a random IMEI
+        function generateIMEI() {
+            let imei = '';
+            for (let i = 0; i < 15; i++) {
+                imei += Math.floor(Math.random() * 10);
+                if (i === 1 || i === 6 || i === 11) imei += ' ';
+            }
+            return imei.trim();
+        }
+
         // Format currency
         function formatCurrency(amount) {
             return `€ ${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
         }
-        
+
         // Calculate totals
         function calculateTotals() {
             let subtotal = 0;
@@ -1202,17 +1772,17 @@
             
             return { subtotal, vat, total, vatRate };
         }
-        
+
         // Update receipt preview
         function updateReceipt() {
             // Update store details
-            document.getElementById('store-name').textContent = document.getElementById('store-name-input').value;
-            document.getElementById('store-address').textContent = document.getElementById('store-address-input').value;
+            document.getElementById('store-name').textContent = 
+                document.getElementById('store-name-input').value.toUpperCase();
+            document.getElementById('store-address').textContent = 
+                document.getElementById('store-address-input').value;
             
-            // Update receipt details
+            // Format and update date
             const dateInput = document.getElementById('receipt-date-input').value;
-            const timeInput = document.getElementById('receipt-time-input').value;
-            
             if (dateInput) {
                 const dateObj = new Date(dateInput);
                 const formattedDate = dateObj.toLocaleDateString('en-US', { 
@@ -1223,6 +1793,8 @@
                 document.getElementById('receipt-date').textContent = formattedDate;
             }
             
+            // Format and update time
+            const timeInput = document.getElementById('receipt-time-input').value;
             if (timeInput) {
                 const [hours, minutes] = timeInput.split(':');
                 const timeObj = new Date();
@@ -1236,70 +1808,128 @@
                 document.getElementById('receipt-time').textContent = formattedTime;
             }
             
-            document.getElementById('receipt-number').textContent = document.getElementById('receipt-number-input').value;
-            document.getElementById('customer-name').textContent = document.getElementById('customer-name-input').value;
-            document.getElementById('payment-method').textContent = document.getElementById('payment-method-input').value;
+            // Update other receipt details
+            document.getElementById('receipt-number').textContent = 
+                document.getElementById('receipt-number-input').value;
+            document.getElementById('customer-name').textContent = 
+                document.getElementById('customer-name-input').value;
+            document.getElementById('payment-method').textContent = 
+                document.getElementById('payment-method-input').value;
             
             // Update items list
-            const itemsList = document.getElementById('items-list');
+            updateItemsList();
+            
+            // Update totals
+            updateTotals();
+        }
+
+        // Update items list in receipt
+        function updateItemsList() {
+            const itemsList = elements.itemsList;
             itemsList.innerHTML = '';
+            
+            if (products.length === 0) {
+                const emptyRow = document.createElement('tr');
+                emptyRow.innerHTML = `
+                    <td colspan="3" style="text-align: center; padding: 40px; color: #86868b; font-style: italic;">
+                        No products added to receipt
+                    </td>
+                `;
+                itemsList.appendChild(emptyRow);
+                return;
+            }
             
             products.forEach((product, index) => {
                 const row = document.createElement('tr');
                 
-                // Item name and details
+                // Get color code for the dot
+                const category = 'iphone'; // Default to iPhone for color lookup
+                const modelProduct = appleProducts[category] && appleProducts[category][product.model];
+                let colorCode = '#1D1D1F';
+                if (modelProduct) {
+                    const colorObj = modelProduct.colors.find(c => c.name === product.color);
+                    if (colorObj) colorCode = colorObj.code;
+                } else {
+                    // Try other categories
+                    for (const cat in appleProducts) {
+                        if (appleProducts[cat][product.model]) {
+                            const colorObj = appleProducts[cat][product.model].colors.find(c => c.name === product.color);
+                            if (colorObj) {
+                                colorCode = colorObj.code;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                // Item cell with all details
                 const itemCell = document.createElement('td');
                 itemCell.innerHTML = `
-                    <div><strong>${product.name} ${product.storage} - ${product.color}</strong></div>
-                    <div class="item-specs">${product.specs.replace(/\n/g, '<br>')}</div>
+                    <div class="item-main-info">
+                        <div class="item-title">${product.name}</div>
+                        <div class="item-variant">
+                            <span class="color-dot" style="background-color: ${colorCode};"></span>
+                            ${product.color} • ${product.storage}
+                        </div>
+                    </div>
+                    ${product.specs ? `<div class="item-specs">${product.specs.replace(/\n/g, '<br>')}</div>` : ''}
                     <div class="item-details">
-                        <div><strong>Model:</strong> ${product.model}</div>
-                        <div><strong>Part No:</strong> ${product.partNumber}</div>
-                        <div><strong>Serial:</strong> ${product.serial}</div>
-                        ${product.imei1 ? `<div><strong>IMEI 1:</strong> ${product.imei1}</div>` : ''}
-                        ${product.imei2 ? `<div><strong>IMEI 2:</strong> ${product.imei2}</div>` : ''}
+                        ${product.partNumber ? `<div class="detail-line"><span class="detail-label-small">Part No:</span> ${product.partNumber}</div>` : ''}
+                        ${product.serial ? `<div class="detail-line"><span class="detail-label-small">Serial:</span> ${product.serial}</div>` : ''}
+                        ${product.imei1 ? `<div class="detail-line"><span class="detail-label-small">IMEI 1:</span> ${product.imei1}</div>` : ''}
+                        ${product.imei2 ? `<div class="detail-line"><span class="detail-label-small">IMEI 2:</span> ${product.imei2}</div>` : ''}
                     </div>
                 `;
                 
-                // Quantity
+                // Quantity cell
                 const qtyCell = document.createElement('td');
                 qtyCell.textContent = product.qty;
+                qtyCell.style.fontWeight = '500';
                 
-                // Price
+                // Price cell
                 const priceCell = document.createElement('td');
                 priceCell.style.textAlign = 'right';
-                priceCell.textContent = formatCurrency(product.price);
+                priceCell.style.fontWeight = '600';
+                priceCell.innerHTML = `
+                    ${formatCurrency(product.price)}
+                    ${product.qty > 1 ? `<div class="total-breakdown">${product.qty} × ${formatCurrency(product.price)}</div>` : ''}
+                `;
                 
                 row.appendChild(itemCell);
                 row.appendChild(qtyCell);
                 row.appendChild(priceCell);
                 itemsList.appendChild(row);
             });
-            
-            // Update totals
+        }
+
+        // Update totals in receipt
+        function updateTotals() {
             const totals = calculateTotals();
+            const vatRate = document.getElementById('vat-rate-input').value;
+            
             document.getElementById('subtotal').textContent = formatCurrency(totals.subtotal);
             document.getElementById('vat').textContent = formatCurrency(totals.vat);
+            document.getElementById('vat').parentElement.querySelector('span:first-child').textContent = `VAT (${vatRate}%):`;
             document.getElementById('total').textContent = formatCurrency(totals.total);
         }
-        
-        // Add new product
+
+        // Add product to receipt
         function addProduct() {
-            const category = document.getElementById('product-category').value;
-            const model = document.getElementById('product-model-select').value;
-            const color = document.getElementById('product-color').value;
-            const storage = document.getElementById('product-storage').value;
-            const specs = document.getElementById('product-specs-custom').value;
-            const partNumber = document.getElementById('product-part').value;
-            const serial = document.getElementById('product-serial').value;
-            const imei1 = document.getElementById('product-imei1').value;
+            const category = elements.categorySelect.value;
+            const model = elements.modelSelect.value.replace(/ \(\d+\)$/, ''); // Remove year from model name
+            const color = elements.colorSelect.value;
+            const storage = elements.storageSelect.value;
+            const specs = elements.specsTextarea.value;
+            const partNumber = elements.partNumberInput.value;
+            const serial = document.getElementById('product-serial').value || generateSerialNumber();
+            const imei1 = document.getElementById('product-imei1').value || (category === 'iphone' ? generateIMEI() : '');
             const imei2 = document.getElementById('product-imei2').value;
             const qty = parseInt(document.getElementById('product-qty').value) || 1;
             
             let price = parseFloat(document.getElementById('product-price-custom').value);
             
-            // If no custom price, calculate from product database
-            if (!price || price <= 0) {
+            // Calculate price if not custom
+            if (!price || price <= 0 || isNaN(price)) {
                 if (appleProducts[category] && appleProducts[category][model]) {
                     const product = appleProducts[category][model];
                     const priceMultiplier = product.priceMultiplier[storage] || 1;
@@ -1314,10 +1944,12 @@
                 return;
             }
             
-            const fullProductName = `${model} ${storage} - ${color}`;
+            // Create clean product name without duplication
+            const productName = `${model} ${storage}`;
             
+            // Add to products array
             products.push({
-                name: fullProductName,
+                name: productName,
                 specs,
                 model,
                 color,
@@ -1330,88 +1962,187 @@
                 price
             });
             
-            // Clear form except category and model
+            // Clear form (except category and model)
+            clearProductForm();
+            
+            // Update UI
+            updateReceipt();
+            updateProductsList();
+            
+            // Show success feedback
+            showNotification(`Added ${productName} to receipt`);
+        }
+
+        // Clear product form
+        function clearProductForm() {
             document.getElementById('product-serial').value = '';
             document.getElementById('product-imei1').value = '';
             document.getElementById('product-imei2').value = '';
             document.getElementById('product-qty').value = 1;
             document.getElementById('product-price-custom').value = '';
             
-            updateReceipt();
-            updateProductsList();
+            // Generate new placeholders
+            document.getElementById('product-serial').placeholder = generateSerialNumber();
+            
+            // Keep current selections but update price display
+            updatePriceDisplay();
         }
-        
+
         // Clear all products
         function clearProducts() {
-            if (confirm('Are you sure you want to remove all products?')) {
+            if (products.length === 0) return;
+            
+            if (confirm('Are you sure you want to remove all products from the receipt?')) {
                 products = [];
                 updateReceipt();
                 updateProductsList();
+                showNotification('All products cleared');
             }
         }
-        
-        // Remove a product
+
+        // Remove a specific product
         function removeProduct(index) {
+            const productName = products[index].name;
             products.splice(index, 1);
             updateReceipt();
             updateProductsList();
+            showNotification(`Removed ${productName} from receipt`);
         }
-        
+
         // Update products list in controls
         function updateProductsList() {
-            const productsList = document.getElementById('products-list');
-            productsList.innerHTML = '';
+            const productsList = elements.productsList;
             
             if (products.length === 0) {
-                productsList.innerHTML = '<div style="text-align: center; color: #86868b; padding: 20px;">No products added yet</div>';
+                productsList.innerHTML = '<div class="no-products">No products added yet. Add your first product above.</div>';
                 return;
             }
+            
+            productsList.innerHTML = '';
             
             products.forEach((product, index) => {
                 const productItem = document.createElement('div');
                 productItem.className = 'product-item';
+                
                 productItem.innerHTML = `
-                    <div class="product-name">${product.name}</div>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-details">
+                            <span>${product.color}</span>
+                            <span>Qty: ${product.qty}</span>
+                        </div>
+                    </div>
                     <div style="display: flex; align-items: center;">
-                        <div class="product-price">${formatCurrency(product.price)}</div>
+                        <div class="product-price">${formatCurrency(product.price * product.qty)}</div>
                         <div class="remove-product" onclick="removeProduct(${index})">
                             <i class="fas fa-times"></i>
                         </div>
                     </div>
                 `;
+                
                 productsList.appendChild(productItem);
             });
         }
-        
+
+        // Show notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: #007AFF;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 1000;
+                font-weight: 500;
+                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+                animation-fill-mode: forwards;
+            `;
+            
+            // Add keyframes for animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+                if (style.parentNode) {
+                    style.parentNode.removeChild(style);
+                }
+            }, 3000);
+        }
+
         // Print receipt
         function printReceipt() {
             window.print();
         }
-        
+
         // Export to PDF
         function exportToPDF() {
             const receiptElement = document.getElementById('receipt');
+            const receiptNumber = document.getElementById('receipt-number-input').value;
+            
+            // Show loading state
+            const exportBtn = document.getElementById('export-pdf-btn');
+            const originalText = exportBtn.innerHTML;
+            exportBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+            exportBtn.disabled = true;
             
             html2canvas(receiptElement, {
-                scale: 2,
+                scale: 3,
                 backgroundColor: '#ffffff',
                 useCORS: true,
-                logging: false
+                logging: false,
+                windowWidth: receiptElement.scrollWidth,
+                windowHeight: receiptElement.scrollHeight
             }).then(canvas => {
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jspdf.jsPDF({
                     orientation: 'portrait',
                     unit: 'mm',
-                    format: [80, 297] // Standard receipt size (80mm width)
+                    format: [80, 297] // Standard receipt size
                 });
                 
                 const imgWidth = 80;
-                const imgHeight = canvas.height * imgWidth / canvas.width;
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
                 
                 pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-                pdf.save(`apple-receipt-${document.getElementById('receipt-number-input').value}.pdf`);
+                pdf.save(`apple-receipt-${receiptNumber}.pdf`);
+                
+                // Restore button state
+                exportBtn.innerHTML = originalText;
+                exportBtn.disabled = false;
+                
+                showNotification('PDF exported successfully');
+            }).catch(error => {
+                console.error('PDF export error:', error);
+                exportBtn.innerHTML = originalText;
+                exportBtn.disabled = false;
+                alert('Error generating PDF. Please try again.');
             });
         }
+
+        // Make removeProduct function available globally
+        window.removeProduct = removeProduct;
     </script>
 </body>
 </html>
